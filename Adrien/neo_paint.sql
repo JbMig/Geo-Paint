@@ -26,13 +26,15 @@ CREATE TABLE IF NOT EXISTS `colors` (
     `project_id`INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`project_id`) REFERENCES `project`(`id`)
+    FOREIGN KEY (`project_id`) REFERENCES `projet`(`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS `font` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `font_name` VARCHAR(255) NOT NULL,
     `user_id` INT NOT NULL,
+    `project_id`INT NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
+    FOREIGN KEY (`project_id`) REFERENCES `projet`(`id`)
 ) ENGINE=InnoDB;
