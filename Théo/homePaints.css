@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Graduate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Graduate&family=Oswald:wght@300&display=swap");
+* {
+  font-family: "Oswald", sans-serif;
+  margin: 0px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid#080808;
+}
+button {
+  background-color: #fff;
+  text-align: center;
+  font-size: 30px;
+  border: 0px solid black;
+}
+img {
+  width: 25px;
+  height: 25px;
+}
+.quit {
+  font-weight: bold;
+}
+
+/* ------------------TOOLS-------------- */
+
+.tools {
+  width: 119px;
+  display: flex;
+  flex-direction: column;
+  background-color: #080808;
+  padding: 1px;
+}
+.secondLine {
+  margin-top: 2px;
+}
+/* --------------------middle Tools----------- */
+.middleTools {
+  margin-top: 25px;
+  border: 2px solid #080808;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+.quit {
+  margin: 25px 20px 0px 0px;
+  border: 2px solid #080808;
+}
