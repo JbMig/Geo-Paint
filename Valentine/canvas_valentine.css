@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+h1 {
+    background-color: chartreuse; /* ce style sert uniquement à vérifier que mon css s'applique */
+}
