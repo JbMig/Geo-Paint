@@ -1,13 +1,24 @@
 <?php
-include "../php_partial/pdo.php";
+require "../../database/pdo.php";
 $maRequete = $pdo->prepare("SELECT * FROM `user`");
 $maRequete->execute();
 $users = $maRequete->fetchAll(PDO::FETCH_ASSOC);
 $title = "neo_paint db";
-include "../html_partial/head.php";
 ?>
-    <body>
-        <a href="../login.php">page login</a>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<body>
+        <a href="/login">page login</a>
         <table>
             <thead>
                 <tr>

@@ -1,7 +1,7 @@
 <?php
 $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 if($id) {
-    include "../php_partial/pdo.php";
+    require "../../database/pdo.php";
     $maRequete = $pdo->prepare("DELETE FROM `user` WHERE `id` = :id");
     $maRequete->execute([
         ":id" => $id
