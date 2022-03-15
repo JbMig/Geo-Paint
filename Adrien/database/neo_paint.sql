@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `projet` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `project_name` VARCHAR(255) NOT NULL,
+    `date` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `user_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
@@ -38,3 +39,9 @@ CREATE TABLE IF NOT EXISTS `font` (
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
     FOREIGN KEY (`project_id`) REFERENCES `projet`(`id`)
 ) ENGINE=InnoDB;
+
+
+INSERT INTO `user` (`mail`, `mdp`)
+VALUES
+("toto@toto.com", "628c02a5aaa0783dcac5fc80f1dbf9f49556fc0a955bf12ead18ce1b76cf02d568cfd83944b1e78c4f23f16270ab5af5c15fbd7560fb4cdd1add35328ab12366");
+

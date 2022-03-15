@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     ]);
 
     http_response_code(302);
-    header('Location: /database');
+    header('Location: /login');
     exit();
 }
 

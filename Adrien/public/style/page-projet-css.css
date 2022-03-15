@@ -1,0 +1,73 @@
+  /* page de projet*/
+
+* {
+    font-family: "Oswald", sans-serif;
+    font-size: 100%;
+    letter-spacing: 2px;
+  }
+
+#section_projet {
+    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+#bin {
+  height: 18px;
+  width: 18px; 
+  
+} 
+#button{
+  display: flex;
+  width: 345px;
+  height: 236px;
+  margin: 56pt 0pt 56pt 70pt;
+
+
+}
+.delete{
+  position: relative;
+  width: 32px;
+  height: 34px;
+  margin-left:312px ;
+  margin-top: 1px;
+  border-radius: 4px;
+  
+}
+.projet{
+  border-radius: 6px;
+  position: absolute;
+  display: flex;
+  width: 345px;
+  height: 236px;
+  color: #fff;
+  background : linear-gradient(white 80%, black 20%);
+  flex-direction: column-reverse;
+}
+#NewFile{
+  color: #fff;
+  background : linear-gradient(white 80%, #05668D 20%);
+}
+#button #date {
+  align-self: flex-end;
+}
+/* animation bouton delete  */
+.delete:hover{
+  background-color: red;
+}
+.delete:active{
+  background-color: #fff;
+}
+/* animation projet */
+.projet:hover{
+  border: 1px solid rgba(93, 79, 133, 0.94);
+  background : linear-gradient(white 80%, rgba(93, 79, 133, 0.94) 20%);
+}
+#NewFile:hover{
+  color: #fff;
+  background : linear-gradient(white 80%, #6CCFF6 20%);
+}
+.projet:active{
+  border: 1px solid #fff;
+  background : linear-gradient(white 80%, #cececece 20%);
+}
+

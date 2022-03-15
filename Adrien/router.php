@@ -21,10 +21,12 @@ switch ($uri) {
     case '/projet':
         require_once __DIR__ . '/php_partial/projet.php';
         break;
+    case "/new_project":
+        require_once __DIR__ . '/php_partial/new_project.php';
+        break;
     default:
         http_response_code(404);
         $content = file_get_contents(__DIR__ . '/html_partial/alerts/404.php');
 }
-
 require_once __DIR__ . '/html_partial/bases_html.php';
 ?>
