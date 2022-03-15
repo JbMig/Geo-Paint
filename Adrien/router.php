@@ -2,12 +2,15 @@
 // La partie à partir du premier / dans l'url
 $uri = $_SERVER['REQUEST_URI'];
 
-// if ($uri !== '/login' && $uri !== '/sign_in') {
-//     if (!isset($_SESSION['user'])) {
-//         header('Location: /login');
-//         exit;
-//     }
-// }
+if ($uri == '/entrer.php') {
+    if (!isset($_SESSION['user'])) {
+        header('Location: /login');
+        exit;
+    } else {
+        header('Location: /projet');
+        exit;
+    }
+}
 switch ($uri) {
     case '/login':
         require_once __DIR__ . '/php_partial/login.php';
@@ -24,3 +27,4 @@ switch ($uri) {
 }
 
 require_once __DIR__ . '/html_partial/bases_html.php';
+?>
