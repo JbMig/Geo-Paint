@@ -1,21 +1,11 @@
 <?php
-$engine = "mysql";
-$host = "localhost";
-$port = 8889;
-$dbname = "neo_paint";
-$username = "root";
-$password = "root";
-$pdo = new PDO("$engine:host=$host:$port;dbname=$dbname", $username, $password);
+include "../php_partial/pdo.php";
 $maRequete = $pdo->prepare("SELECT * FROM `user`");
 $maRequete->execute();
 $users = $maRequete->fetchAll(PDO::FETCH_ASSOC);
+$title = "neo_paint db";
+include "../html_partial/head.php";
 ?>
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Neo_paint Users</title>
-    </head>
     <body>
         <a href="../login.php">page login</a>
         <table>

@@ -1,5 +1,5 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = filter_input(INPUT_POST, "mail");
     $mdp = filter_input(INPUT_POST, "mdp");
     include "php_partial/pdo.php";
@@ -13,7 +13,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: back_office/database.php');
     exit();
 }
-include "html_partial/head.php"
+$title = "sign in";
+include "html_partial/head.php";
 ?>
 <body>
     <main>

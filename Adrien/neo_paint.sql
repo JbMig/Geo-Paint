@@ -6,7 +6,7 @@ USE `neo_paint`;
 CREATE TABLE IF NOT EXISTS `user` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `mail` VARCHAR(255) NOT NULL,
-    `mdp` VARCHAR(255) NOT NULL,
+    `mdp` VARCHAR(256) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 

@@ -1,4 +1,5 @@
 <?php
+    $title = "login";
     include "html_partial/head.php";
 ?>
 <body>
