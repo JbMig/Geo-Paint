@@ -15,4 +15,5 @@
     <script src="./canvas_valentine.js"></script>
 </body>
 </html>
+
 <!-- pour tester (val) : http://localhost/code_Projet_full_stack_14-20_mars\canvas_valentine.php -->

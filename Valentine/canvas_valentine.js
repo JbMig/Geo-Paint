@@ -30,7 +30,7 @@ ctx.strokeRect(250, 50, 50, 50);  // carré rouge contour jaune
 //triangle !
 function degToRad(degrees) {
     return degrees * Math.PI / 180;
-  };
+  	};
 ctx.fillStyle = 'rgb(0, 255, 255)';
 ctx.beginPath();
 ctx.moveTo(50, 50);
@@ -123,6 +123,113 @@ ctx.arc(x0, y0, rayon, degToRad(0), degToRad(360), false);
 ctx.fill(); // cercle vert
 
 
-// à chercher plus tard :
-ctx.ellipse(100, 100, 50, 75, 45 * Math.PI/180, 0, 2 * Math.PI);
+// ellipses
+
 // https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D/ellipse
+// ctx.ellipse(x, y, rayonX, rayonY, rotation, angleDébut, angleFin, antihoraire);
+
+ctx.fillStyle = 'rgb(155, 255, 0)';
+ctx.beginPath();
+ctx.ellipse(600, 100, 50, 75, degToRad(0), degToRad(360), false); // angle1 < angle2 : l'ellipse est verticale
+ctx.fill(); // ellipse verte
+
+ctx.fillStyle = 'rgb(255, 155, 0)';
+ctx.beginPath();
+ctx.ellipse(600, 400, 80, 45, degToRad(0), degToRad(360), false); // angle1 > angle2 : l'ellipse est horizontale
+ctx.fill(); // ellipse orange
+
+// le 1er angle donné (3e paramètre) est le rayon horizontal, le 2e angle est le rayon vertical.
+// dc si on inclue notre ellipse dans un rectangle, les coordonnées du rectangle seront :
+
+// coin supérieur gauche : x1 = x0 - rayonX et y1 = y0 - rayonY
+// coin inférieur droit : x2 = x0 + rayonX et y2 = y0 + rayonY
+// (avec x0 et y0 les coord du centre de l'ellipse)
+
+// et à l'inverse, à partir du rectangle :
+// si on note (x1,y1) les coord du coin supérieur gauche et (x2,y2) celles du coin inférieur droit, on a :
+// x0 = (x1 + x2)/2 et y0 = (y1 + y2)/2
+// rayonX = x0 - min(x1,x2) et rayonY = y0 - min(y1,y2)
+// les autres paramètres ne changent pas. Comme pour le cercle, ils servent uniquement à tracer des arc d'ellipses (façon pacman).
+
+
+
+
+
+// Je construis des fonctions pour tout ce qui précède :
+
+function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epaisseur_contour) {
+	ctx.fillStyle = couleur_remplissage;
+	ctx.fillRect(x,y,L,H);
+	ctx.strokeStyle = couleur_contour;
+	ctx.lineWidth = epaisseur_contour;
+	ctx.strokeRect(x,y,L,H);
+}
+
+function rectangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	Xmin = min(x1,x2);
+	L = max(x1,x2) - Xmin;
+	Ymin = min(y1,y2);
+	H = max(y1,y2) - Ymin;
+	rectangle_clavier (Xmin, Ymin, L, H, couleur_contour, couleur_remplissage, epaisseur_contour)
+}
+
+function triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_remplissage, epaisseur_contour){
+	ctx.fillStyle = couleur_remplissage;
+	ctx.strokeStyle = couleur_contour;
+	ctx.lineWidth = epaisseur_contour;
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.lineTo(x3, y3);
+	ctx.lineTo(x1, y1);
+	ctx.fill();
+	ctx.stroke();
+}
+
+function triangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	x3 = (x1 + x2)/2;
+	y3 = y2;
+	y2 = y1;
+	triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_remplissage, epaisseur_contour)
+} //triangle isocèle inscrit dans le rectangle avec une base horizontale
+
+// function degToRad(degrees) {
+//     return degrees * Math.PI / 180;
+//   	};
+
+function cercle_clavier(x0, y0, rayon, couleur_contour, couleur_remplissage, epaisseur_contour){
+	ctx.fillStyle = couleur_remplissage;
+	ctx.strokeStyle = couleur_contour;
+	ctx.lineWidth = epaisseur_contour;
+	ctx.beginPath();
+	ctx.arc(x0, y0, rayon, degToRad(0), degToRad(360), false);
+	ctx.fill();
+	ctx.stroke();
+	}
+
+function cercle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	coté_carré = min (x2-x1, y2-y1);
+	r = coté_carré/2;
+	x0 = min(x1,x2) + r;
+    y0 = min(y1,y2) + r;
+	cercle_clavier(x0, y0, r, couleur_contour, couleur_remplissage, epaisseur_contour);
+}
+
+
+function ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour){
+	ctx.fillStyle = couleur_remplissage;
+	ctx.strokeStyle = couleur_contour;
+	ctx.lineWidth = epaisseur_contour;
+	ctx.beginPath();
+	ctx.ellipse(x0, y0, rayonX, rayonY, degToRad(0), degToRad(360), false);
+	ctx.fill();
+	ctx.stroke();
+	}
+
+function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	x0 = (x1 + x2)/2;
+	y0 = (y1 + y2)/2;
+	rayonX = x0 - min(x1,x2);
+	rayonY = y0 - min(y1,y2);
+	ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour)
+}
