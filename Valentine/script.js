@@ -54,6 +54,7 @@ function handleMouseDown(e) {
 
     // set a flag indicating the drag has begun
     isDown = true;
+	figures.push([]);
 }
 
 function handleMouseUp(e) {
@@ -86,7 +87,6 @@ function handleMouseMove(e) {
     console.log(e)
     e.preventDefault();
     e.stopPropagation();
-
     // if we're not dragging, just return
     if (!isDown) {
         return;
@@ -114,8 +114,9 @@ function handleMouseMove(e) {
     // draw a new rect from the start position 
     // to the current mouse position
     ctx.strokeRect(startX, startY, width, height);
-	figures.push([startX, startY, mouseX, mouseY]);
 	
+	var l = figures.length
+	figures[l-1] = [startX, startY, mouseX, mouseY];
 	}
 
 document.getElementById('canvas').addEventListener('mousedown', function(e) {
