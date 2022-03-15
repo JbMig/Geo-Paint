@@ -42,10 +42,10 @@ ctx.fill(); // triangle turquoise
 
 //j'essaie de faire mon propre triangle
 //imaginons que ce sont les coordonnées du cliquer-glisser de la souris :
-x1 = 150;
-y1 = 400;
-x2 = 300;
-y2 = 300;
+var x1 = 150;
+var y1 = 400;
+var x2 = 300;
+var y2 = 300;
 
 //maintenant je trace mon triangle
 ctx.fillStyle = 'rgb(255, 255, 0)';
@@ -74,12 +74,12 @@ ctx.lineWidth = 1;
 ctx.strokeRect(x1, y1, x2-x1, y2-y1); //rectangle blanc autour d'un triangle
 
 // si on demande les coordonnées des 3 sommets du triangle :
-x1 = 100;
-y1 = 400;
-x2 = 400;
-y2 = 300;
-x3 = 350;
-y3 = 450;
+var x1 = 100;
+var y1 = 400;
+var x2 = 400;
+var y2 = 300;
+var x3 = 350;
+var y3 = 450;
 ctx.strokeStyle = 'rgb(0, 100, 250)';
 ctx.lineWidth = 3;
 ctx.beginPath();
@@ -98,9 +98,9 @@ ctx.fill(); // cercle bleu
 // on ne peut pas l'inscrire dans un rectangle comme avant, puisqu'on part du centre
 // et c'est forcément un vrai cercle, pas une ellipse.
 // donc on pourra seulement définir le centre et le rayon :
-x0 = 500
-y0 = 250
-rayon = 70
+var x0 = 500
+var y0 = 250
+var rayon = 70
 ctx.fillStyle = 'rgb(155, 0, 255)';
 ctx.strokeStyle = 'rgb(255, 255, 255)';
 ctx.lineWidth = 2;
@@ -112,11 +112,11 @@ ctx.stroke(); // cercle violet contour blanc
 // et si on veut cliquer-glisser, il faut calculer le rayon en fonction de la distance entre
 // le centre du cercle et la position finale de la souris :
 
-x0 = 500
-y0 = 350
-x_mouse = 520
-y_mouse = 370
-rayon = Math.sqrt((x_mouse - x0)**2 + (y_mouse - y0)**2)
+var x0 = 500
+var y0 = 350
+var x_mouse = 520
+var y_mouse = 370
+var rayon = Math.sqrt((x_mouse - x0)**2 + (y_mouse - y0)**2)
 ctx.fillStyle = 'rgb(155, 255, 0)';
 ctx.beginPath();
 ctx.arc(x0, y0, rayon, degToRad(0), degToRad(360), false);
@@ -148,8 +148,13 @@ ctx.fill(); // ellipse orange
 // et à l'inverse, à partir du rectangle :
 // si on note (x1,y1) les coord du coin supérieur gauche et (x2,y2) celles du coin inférieur droit, on a :
 // x0 = (x1 + x2)/2 et y0 = (y1 + y2)/2
-// rayonX = x0 - min(x1,x2) et rayonY = y0 - min(y1,y2)
+// rayonX = x0 - Math.min(x1,x2) et rayonY = y0 - Math.min(y1,y2)
 // les autres paramètres ne changent pas. Comme pour le cercle, ils servent uniquement à tracer des arc d'ellipses (façon pacman).
+
+
+
+
+
 
 
 
@@ -166,10 +171,10 @@ function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epa
 }
 
 function rectangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
-	Xmin = min(x1,x2);
-	L = max(x1,x2) - Xmin;
-	Ymin = min(y1,y2);
-	H = max(y1,y2) - Ymin;
+	var Xmin = Math.min(x1,x2);
+	var L = Math.max(x1,x2) - Xmin;
+	var Ymin = Math.min(y1,y2);
+	var H = Math.max(y1,y2) - Ymin;
 	rectangle_clavier (Xmin, Ymin, L, H, couleur_contour, couleur_remplissage, epaisseur_contour)
 }
 
@@ -187,9 +192,9 @@ function triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_rempl
 }
 
 function triangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
-	x3 = (x1 + x2)/2;
-	y3 = y2;
-	y2 = y1;
+	var x3 = (x1 + x2)/2;
+	var y3 = y2;
+	var y2 = y1;
 	triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_remplissage, epaisseur_contour)
 } //triangle isocèle inscrit dans le rectangle avec une base horizontale
 
@@ -207,13 +212,21 @@ function cercle_clavier(x0, y0, rayon, couleur_contour, couleur_remplissage, epa
 	ctx.stroke();
 	}
 
-function cercle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
-	coté_carré = min (x2-x1, y2-y1);
-	r = coté_carré/2;
-	x0 = min(x1,x2) + r;
-    y0 = min(y1,y2) + r;
-	cercle_clavier(x0, y0, r, couleur_contour, couleur_remplissage, epaisseur_contour);
-}
+// je commente les fonctions cercle puisqu'on passera par l'ellipse.
+
+// function cercle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+// 	var coté_carré = Math.min (x2-x1, y2-y1);
+// 	var r = coté_carré/2;
+// 	var x0 = Math.min(x1,x2) + r;
+//     var y0 = Math.min(y1,y2) + r;
+// 	cercle_clavier(x0, y0, r, couleur_contour, couleur_remplissage, epaisseur_contour);
+// }
+
+// // autre méthode (en partant du centre du cercle)
+// function cercle_souris_v2(x0, y0, x_mouse, y_mouse, couleur_contour, couleur_remplissage, epaisseur_contour){
+// 	var r = Math.sqrt((x_mouse - x0)**2 + (y_mouse - y0)**2);
+// 	cercle_clavier(x0, y0, r, couleur_contour, couleur_remplissage, epaisseur_contour);
+// }
 
 
 function ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour){
@@ -227,9 +240,20 @@ function ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_rempli
 	}
 
 function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
-	x0 = (x1 + x2)/2;
-	y0 = (y1 + y2)/2;
-	rayonX = x0 - min(x1,x2);
-	rayonY = y0 - min(y1,y2);
+	var x0 = (x1 + x2)/2;
+	var y0 = (y1 + y2)/2;
+	var rayonX = x0 - Math.min(x1,x2);
+	var rayonY = y0 - Math.min(y1,y2);
 	ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour)
 }
+
+
+
+
+
+
+
+
+
+// maintenant les zones de texte
+// https://developer.mozilla.org/fr/docs/Web/API/CanvasRenderingContext2D#dessiner_du_texte
