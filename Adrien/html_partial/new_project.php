@@ -15,7 +15,7 @@
             <button><img src="img/icons\download.png" alt="downloads" /></button>
         </div>
         <div class="nameFile"><p>Nom du ficher</p></div>
-        <div><button class="quit">QUIT</button></div>
+        <div><button class="quit" type="button" onclick="window.location.href = '/projet';">QUIT</button></div>
     </nav>
     <div class="draw">
         <div class="bigSquare"></div>
