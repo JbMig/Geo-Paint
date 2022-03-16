@@ -40,3 +40,13 @@ CREATE TABLE IF NOT EXISTS `font` (
     FOREIGN KEY (`project_id`) REFERENCES `projet`(`id`)
 ) ENGINE=InnoDB;
 
+INSERT INTO `user` (`mail`, `mdp`)
+values
+("toto", "10e06b990d44de0091a2113fd95c92fc905166af147aa7632639c41aa7f26b1620c47443813c605b924c05591c161ecc35944fc69c4433a49d10fc6b04a33611");
+
+INSERT INTO `projet` (`project_name`, `user_id`)
+VALUES
+("projet1", 19),
+("projet2", 19),
+("projet3", 19),
+("projet4", 19);

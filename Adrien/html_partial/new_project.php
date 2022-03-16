@@ -18,7 +18,7 @@
         <div><button class="quit" type="button" onclick="window.location.href = '/projet';">QUIT</button></div>
     </nav>
     <div class="draw">
-        <div class="bigSquare"></div>
+        <canvas class="bigSquare" id="canvas" width=300 height=300></canvas>
         <div class="colorChoise">
             <div class="colors"></div>
         </div>
