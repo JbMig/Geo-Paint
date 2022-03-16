@@ -1,16 +1,17 @@
 <section id="section_projet">
-    <div id="button">
-        <button class="projet" id="NewFile" type="button" onclick="window.location.href = '/new_project';">
-            <span>Nouveau Projet</span>
-        </button>
-    </div>
+    <div class="newProjet">
+    <button class="newProjetBtn"  type="button" onclick="window.location.href = '/new_project';"></btn>
+        <span>Nouveau Projet</span>
+    </button></div>
+
     <?php foreach($projets as $projet): ?>
-        <div id="button">
-            <button  class="projet">
+        <div class="projet">
+            <btn class="projetBtn">
                 <span id="name"><?= $projet["project_name"]  ?></span>
                 <span id="date"><?=$projet["date"] ?></span>
-            </button>
-            <button class="delete"><img src="img/bin.png" alt="BIN" id="bin"></button>
-        </div>
+                <button class="delete"><img src="img/bin.png" alt="BIN" id="bin"></button>
+            </div>
+            
+    
     <?php endforeach; ?>
 </section>

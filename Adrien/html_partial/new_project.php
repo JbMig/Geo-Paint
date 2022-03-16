@@ -9,12 +9,12 @@
             <button class="btnTools"><img src="img/icons\cercle.png" alt="cercle" /></button>
         </div>
         <div class="middleTools">
-            <button><img src="img/icons\format.png" alt="format" /></button>
-            <button><img src="img/icons\hand.png" alt="hand" /></button>
-            <button><img src="img/icons\save-file.png" alt="save-file"></button>
-            <button><img src="img/icons\download.png" alt="downloads" /></button>
+            <button class="btnMiddleTools"><img src="img/icons\format.png" alt="format" /></button>
+            <button class="btnMiddleTools"><img src="img/icons\hand.png" alt="hand" /></button>
+            <button class="btnMiddleTools"><img src="img/icons\save-file.png" alt="save-file"></button>
+            <button class="btnMiddleTools"><img src="img/icons\download.png" alt="downloads" /></button>
         </div>
-        <div class="nameFile"><p>Nom du ficher</p></div>
+        <div class="nameFile"><p id="textNameFile">Nom du ficher</p></div>
         <div><button class="quit" type="button" onclick="window.location.href = '/projet';">QUIT</button></div>
     </nav>
     <div class="draw">
