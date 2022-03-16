@@ -1,7 +1,7 @@
 <section id="section_projet">
     <div id="button">
-        <button class="projet" id="NewFile">
-            <a href="/new_project">Nouveau Projet</a>
+        <button class="projet" id="NewFile" type="button" onclick="window.location.href = '/new_project';">
+            <span>Nouveau Projet</span>
         </button>
     </div>
     <?php foreach($projets as $projet): ?>
