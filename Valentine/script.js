@@ -2,9 +2,13 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+var stroke_color = 'rgb(0, 0, 255)';				// par défaut. Il faudra changer ça plus tard en fonction des choix de l'utilisateur.
+var fill_color = 'rgb(255, 255, 0)';			// idem
+var stroke_thickness = 2;							// idem
+
 // style the context
-ctx.strokeStyle = "blue";
-ctx.lineWidth = 2;
+ctx.strokeStyle = stroke_color;
+ctx.lineWidth = stroke_thickness;
 
 // calculate where the canvas is on the window
 // (used to help calculate mouseX/mouseY)
@@ -43,8 +47,8 @@ function rectangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, 
 }
 
 function handleMouseDown(e) {
-    console.log('handleMouseDown')
-    console.log(e)
+    console.log('handleMouseDown');
+    console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
@@ -57,34 +61,36 @@ function handleMouseDown(e) {
 	figures.push([]);
 }
 
+
 function handleMouseUp(e) {
-    console.log('handleMouseUp')
-    console.log(e)
+    console.log('handleMouseUp');
+    console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
     // the drag is over, clear the dragging flag
     isDown = false;
     // console.log(x1, x2, y1, y2)
-	var l=figures.length
-	rectangle_souris(figures[l-1][0], figures[l-1][1], figures[l-1][2], figures[l-1][3], 'rgb(0, 0, 255)', 'rgb(255, 255, 0)', 2)
+	var l=figures.length;
+	rectangle_souris(figures[l-1][0], figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6])
 }
 
+
 function handleMouseOut(e) {
-    console.log('handleMouseOut')
-    console.log(e)
+    console.log('handleMouseOut');
+    console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
     // the drag is over, clear the dragging flag
     isDown = false; 
-	var l=figures.length
-	rectangle_souris(figures[l-1][0], figures[l-1][1], figures[l-1][2], figures[l-1][3], 'rgb(0, 0, 255)', 'rgb(255, 255, 0)', 2)
+	var l=figures.length;
+	rectangle_souris(figures[l-1][0], figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6])
 }
 
 function handleMouseMove(e) {
-    console.log('handleMouseMove')
-    console.log(e)
+    console.log('handleMouseMove');
+    console.log(e);
     e.preventDefault();
     e.stopPropagation();
     // if we're not dragging, just return
@@ -101,10 +107,11 @@ function handleMouseMove(e) {
     // clear the canvas
     
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	
 	for (var i = 0; i < figures.length - 1; i++) {
-		rectangle_souris(figures[i][0], figures[i][1], figures[i][2], figures[i][3], 'rgb(0, 0, 255)', 'rgb(255, 255, 0)', 2)
+		rectangle_souris(figures[i][0], figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6]);
 	}
-	console.log(figures) // pour le débuggage
+	console.log(figures); // pour le débuggage
 
     // calculate the rectangle width/height based
     // on starting vs current mouse position
@@ -115,9 +122,14 @@ function handleMouseMove(e) {
     // to the current mouse position
     ctx.strokeRect(startX, startY, width, height);
 	
-	var l = figures.length
-	figures[l-1] = [startX, startY, mouseX, mouseY];
+	var l = figures.length;
+	figures[l-1] = [startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; // ce truc ne marche pas pour l'instant : ça ne sauvegarde que les 4 coordonnées.
+	//figures.splice(l-1,1,[startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]); // autre méthode, au cas où...
+	
+	console.log(figures[l-1]); // pour le débuggage
+	console.log(stroke_color);
 	}
+	
 
 document.getElementById('canvas').addEventListener('mousedown', function(e) {
   handleMouseDown(e);
