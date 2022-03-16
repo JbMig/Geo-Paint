@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `projet` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `project_name` VARCHAR(255) NOT NULL,
+    `data` JSON,
     `date` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `user_id` INT NOT NULL,
     PRIMARY KEY (`id`),

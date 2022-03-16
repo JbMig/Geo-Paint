@@ -1,7 +1,7 @@
 <?php
 $engine = "mysql";
 $host = "localhost";
-$port = 8889;
+$port = 3306;
 $dbname = "neo_paint";
 $username = "root";
 $password = "root";

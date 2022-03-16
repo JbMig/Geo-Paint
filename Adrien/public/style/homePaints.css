@@ -221,3 +221,11 @@ img {
   padding-top: 15px;
   padding-left: 15px;
 }
+#form {
+  visibility: hidden;
+}
+
+/* code adrien */
+button {
+  cursor: pointer;
+}

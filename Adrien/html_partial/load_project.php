@@ -11,17 +11,10 @@
         <div class="middleTools">
             <button class="btnMiddleTools"><img src="img/icons\format.png" alt="format" /></button>
             <button class="btnMiddleTools"><img src="img/icons\hand.png" alt="hand" /></button>
-            <button id="open_form" class="btnMiddleTools"><img src="img/icons\save-file.png" alt="save-file"></button>
+            <button class="btnMiddleTools"><img src="img/icons\save-file.png" alt="save-file"></button>
             <button class="btnMiddleTools"><img src="img/icons\download.png" alt="downloads" /></button>
         </div>
-        <!-- formulaire Adrien -->
-        <form id="form" method="post">
-            <input id="get_json" type="hidden" name="data">
-            <input id="projectName" type="text" name="projectName" required>
-            <button id="save" type="submit">Valider</button>
-        </form>
-
-        <div class="nameFile"><p id="textNameFile">Nom du ficher</p></div>
+        <div class="nameFile"><p id="textNameFile"><?=$title?></p></div>
         <div><button class="quit" type="button" onclick="window.location.href = '/projet';">QUIT</button></div>
     </nav>
     <div class="draw">

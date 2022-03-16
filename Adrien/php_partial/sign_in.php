@@ -22,9 +22,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             ":mdp" => $mdp
         ]);
 
-        // http_response_code(302);
-        // header('Location: /login');
-        // exit();
+        http_response_code(302);
+        header('Location: /login');
+        exit();
     }
 }
 

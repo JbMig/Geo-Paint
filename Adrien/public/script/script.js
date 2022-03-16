@@ -128,6 +128,7 @@ function handleMouseMove(e) {
 	
 	console.log(figures[l-1]); // pour le débuggage
 	console.log(stroke_color);
+
 	}
 	
 
@@ -143,3 +144,29 @@ document.getElementById('canvas').addEventListener('mouseup', function(e) {
 document.getElementById('canvas').addEventListener('mouseout', function(e) {
   handleMouseOut(e);
 });
+
+
+
+// tout ce qui suit appartient à la propriété intéléctuel de Adrien (dsl pour les fautes, il est tard)
+// mes variables
+
+var data = [...figures];
+var array_json = JSON.stringify(data); //transform data en json
+var save = document.querySelector("#save");
+var get_json = document.querySelector("#get_json");
+var open_form = document.querySelector("#open_form");
+
+// test variables
+// console.log(array_json);
+
+// mes fonctions
+function switch_hidden() { //fait apparaitre le formulaire
+    form.style.visibility = "visible";
+}
+function save_it() { //récupère le json dans le input
+    get_json.value = array_json;
+}
+
+// mes events
+open_form.addEventListener("click", switch_hidden)
+save.addEventListener("click", save_it);
