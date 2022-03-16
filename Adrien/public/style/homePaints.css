@@ -92,9 +92,8 @@ img {
   justify-content: space-around;
 }
 .bigSquare{
-  width: 1000px;
-  height: 850px;
-  background-color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #080808;
   margin : 50px 50px 50px 50px
 }
 .colorChoise{
