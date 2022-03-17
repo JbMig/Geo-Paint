@@ -11,12 +11,11 @@
             <button class="btnMiddleTools" id="btn_resize"><img src="img/icons\format.png" alt="format" /></button>
             <button class="btnMiddleTools" id="btn_hand"><img src="img/icons\hand.png" alt="hand" /></button>
             <button class="btnMiddleTools" id="open_form"><img src="img/icons\save-file.png" alt="save-file"></button>
-            <button class="btnMiddleTools"><img src="img/icons\download.png" alt="downloads" /></button>
             <button class="btnMiddleTools" id="menu"><img src="img/icons\download.png" alt="downloads" /></button>
         </div>
         
         <!-- boutons de création png et pdf -->
-        <div>  
+        <div> 
             
             <button id="convertirPng">télécharger en png</button>
             <button id="convertirPdf">télécharger en pdf</button>
@@ -24,7 +23,10 @@
 
         <!-- formulaire Adrien -->
         <div id="post_json" type="text"><?= $_SESSION["projet"]["data"];?></div>
+
         <form id="form" method="post">
+            <a href="#" class="cross">&times;</a>
+            <label for="get_json">Sauvegarder</label>
             <input id="get_json" type="hidden" name="data">
             <button id="save" type="submit">Valider</button>
         </form>

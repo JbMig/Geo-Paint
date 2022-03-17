@@ -22,6 +22,8 @@
         <!-- formulaire Adrien -->
         <div id="post_json" type="text">[]</div>
         <form id="form" method="post">
+            <a href="#" class="cross">&times;</a>
+            <label for="get_json">Nom du fichier</label>
             <input id="get_json" type="hidden" name="data">
             <input id="projectName" type="text" name="projectName" required>
             <button id="save" type="submit">Valider</button>
