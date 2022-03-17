@@ -22,6 +22,7 @@ if ("POST" === $_SERVER["REQUEST_METHOD"]) {
     exit();
 }
 
+
 require __DIR__ . '/../html_partial/projet.php';
 
 $content = ob_get_clean();
