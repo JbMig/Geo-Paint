@@ -13,7 +13,8 @@ if ("POST" === $_SERVER["REQUEST_METHOD"]) {
     $projet = filter_input(INPUT_POST, "project_name");
     $maRequete = $pdo->prepare("SELECT `id`, `project_name`, `data`, `user_id` FROM `projet` WHERE `project_name` = :projectName AND `user_id` = :userId;");
     $maRequete->execute([
-        ":projectName" => $projet
+        ":projectName" => $projet,
+        ":userId" => $user_id
     ]);
 
     $projet_server = $maRequete->fetch();
