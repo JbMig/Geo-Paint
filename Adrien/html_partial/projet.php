@@ -9,13 +9,14 @@
 
     <?php foreach($projets as $projet): ?>
         <div class="projet">
-            <button class="projetBtn" id="">
-                <span id="name"><?= $projet["project_name"]  ?></span>
-                <span id="date"><?=$projet["date"] ?></span>
-            </button>
-            <button class="delete" id=""><img id="dash"src="img/bin.png" alt="BIN" >
+            <form class="projetBtn" method="post">
+                <button class="projetBtn" id="" type="submit">
+                    <span id="name" ><?= $projet["project_name"]?></span>
+                    <span id="date"><?=$projet["date"] ?></span>
+                    <input type="hidden" id="project_name" name="project_name" value="<?= $projet["project_name"]?>">
+                </button>
+            </form>
+            <button class="delete" id=""><img id="dash"src="img/bin.png" alt="BIN" ></button>
         </div>
-            
-    
     <?php endforeach; ?>
 </section>
