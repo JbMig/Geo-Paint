@@ -3,14 +3,14 @@
         <div class="tools">
             <button class="btnTools"><img src="img/icons\texte.png" alt="T" /></button>
             <button class="btnTools" id="btn_erase"><img src="img/icons\la-gomme.png" alt="gomme" /></button>
-            <button id="btn_rect" class="btnTools"><img src="img/icons\square.png" alt="square" /></button>
-            <button id="btn_tri" class="btnTools"><img src="img/icons\triangle.png" alt="triangle" /></button>
-            <button id = "btn_elli" class="btnTools"><img src="img/icons\cercle.png" alt="cercle" /></button>
+            <button class="btnTools" id="btn_rect"><img src="img/icons\square.png" alt="square" /></button>
+            <button class="btnTools" id="btn_tri"><img src="img/icons\triangle.png" alt="triangle" /></button>
+            <button class="btnTools" id = "btn_elli"><img src="img/icons\cercle.png" alt="cercle" /></button>
         </div>
         <div class="middleTools">
-            <button class="btnMiddleTools"><img src="img/icons\format.png" alt="format" /></button>
-            <button class="btnMiddleTools"><img src="img/icons\hand.png" alt="hand" /></button>
-            <button id="open_form" class="btnMiddleTools"><img src="img/icons\save-file.png" alt="save-file"></button>
+            <button class="btnMiddleTools" id="btn_resize"><img src="img/icons\format.png" alt="format" /></button>
+            <button class="btnMiddleTools" id="btn_hand"><img src="img/icons\hand.png" alt="hand" /></button>
+            <button class="btnMiddleTools" id="open_form"><img src="img/icons\save-file.png" alt="save-file"></button>
             <button class="btnMiddleTools"><img src="img/icons\download.png" alt="downloads" /></button>
         </div>
 
