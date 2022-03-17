@@ -1,3 +1,56 @@
+let outil = 'Aucun'
+function outil_rectangle() {
+    if (outil === 'Aucun') {
+		outil = 'rectangle';
+	}
+	else if (outil === 'triangle') {
+		outil = 'rectangle';
+	}
+	else if (outil === 'ellipse') {
+		outil = 'rectangle';
+	}
+	else {
+		outil = 'Aucun';
+	}
+	console.log(outil) // pour vérifier que ça fonctionne
+}
+document.getElementById("btn_rect").onclick = outil_rectangle;
+
+function outil_triangle() {
+    if (outil === 'Aucun') {
+		outil = 'triangle';
+	}
+	else if (outil === 'rectangle') {
+		outil = 'triangle';
+	}
+	else if (outil === 'ellipse') {
+		outil = 'triangle';
+	}
+	else {
+		outil = 'Aucun';
+	}
+	console.log(outil) // pour vérifier que ça fonctionne
+}
+document.getElementById("btn_tri").onclick = outil_triangle;
+
+
+function outil_ellipse() {
+    if (outil === 'Aucun') {
+		outil = 'ellipse';
+	}
+	else if (outil === 'triangle') {
+		outil = 'ellipse';
+	}
+	else if (outil === 'rectangle') {
+		outil = 'ellipse';
+	}
+	else {
+		outil = 'Aucun';
+	}
+	console.log(outil) // pour vérifier que ça fonctionne
+}
+document.getElementById("btn_elli").onclick = outil_ellipse;
+
 // get references to the canvas and context
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -43,8 +96,55 @@ function rectangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, 
 	var L = Math.max(x1,x2) - Xmin;
 	var Ymin = Math.min(y1,y2);
 	var H = Math.max(y1,y2) - Ymin;
-	rectangle_clavier (Xmin, Ymin, L, H, couleur_contour, couleur_remplissage, epaisseur_contour)
+	rectangle_clavier (Xmin, Ymin, L, H, couleur_contour, couleur_remplissage, epaisseur_contour);
 }
+
+function triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_remplissage, epaisseur_contour){
+	ctx.fillStyle = couleur_remplissage;
+	ctx.strokeStyle = couleur_contour;
+	ctx.lineWidth = epaisseur_contour;
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.lineTo(x3, y3);
+	ctx.lineTo(x1, y1);
+	ctx.fill();
+	ctx.stroke();
+}
+
+function triangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	var x3 = (x1 + x2)/2;
+	var y3 = y2;
+	var y2 = y1;
+	triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_remplissage, epaisseur_contour);
+} //triangle isocèle inscrit dans le rectangle avec une base horizontale
+
+function degToRad(degrees) {
+    return degrees * Math.PI / 180;
+  	};
+
+function ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour){
+	ctx.fillStyle = couleur_remplissage;
+	ctx.strokeStyle = couleur_contour;
+	ctx.lineWidth = epaisseur_contour;
+	ctx.beginPath();
+	ctx.ellipse(x0, y0, rayonX, rayonY, degToRad(0), degToRad(360), false);
+	ctx.fill();
+	ctx.stroke();
+	}
+
+function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	var x0 = (x1 + x2)/2;
+	var y0 = (y1 + y2)/2;
+	var rayonX = x0 - Math.min(x1,x2);
+	var rayonY = y0 - Math.min(y1,y2);
+	ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour);
+}
+
+
+
+
+
 
 function handleMouseDown(e) {
     // console.log('handleMouseDown');
@@ -58,7 +158,7 @@ function handleMouseDown(e) {
 
     // set a flag indicating the drag has begun
     isDown = true;
-	figures.push([]);
+	figures.push(['Aucun',0,0,0,0,'','',0]);
 }
 
 
@@ -72,7 +172,18 @@ function handleMouseUp(e) {
     isDown = false;
     // console.log(x1, x2, y1, y2)
 	var l=figures.length;
-	rectangle_souris(figures[l-1][0], figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6])
+	if (figures[l-1][0] === 'rectangle') {
+		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+	}
+	else if (figures[l-1][0] === 'triangle') {
+		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+	}
+	else if (figures[l-1][0] === 'ellipse') {
+		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+	}
+	// else {
+	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+	// }
 }
 
 
@@ -85,7 +196,18 @@ function handleMouseOut(e) {
     // the drag is over, clear the dragging flag
     isDown = false; 
 	var l=figures.length;
-	rectangle_souris(figures[l-1][0], figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6])
+	if (figures[l-1][0] === 'rectangle') {
+		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+	}
+	else if (figures[l-1][0] === 'triangle') {
+		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+	}
+	else if (figures[l-1][0] === 'ellipse') {
+		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+	}
+	// else {
+	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+	// }
 }
 
 function handleMouseMove(e) {
@@ -109,9 +231,22 @@ function handleMouseMove(e) {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
 	for (var i = 0; i < figures.length - 1; i++) {
-		rectangle_souris(figures[i][0], figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6]);
+		if(figures[i] != [0,0,0,0,'','',0]) {
+			if (figures[i][0] === 'rectangle') {
+				rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			else if (figures[i][0] === 'triangle') {
+				triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			else if (figures[i][0] === 'ellipse') {
+				ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			// else {
+			// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+			// }
+		}
 	}
-	//console.log(figures); // pour le débuggage
+	console.log(figures); // pour le débuggage
 
     // calculate the rectangle width/height based
     // on starting vs current mouse position
@@ -120,11 +255,13 @@ function handleMouseMove(e) {
 
     // draw a new rect from the start position 
     // to the current mouse position
-    ctx.strokeRect(startX, startY, width, height);
+    if (outil != 'Aucun') {
+		ctx.strokeRect(startX, startY, width, height);
+	}
+	
 	
 	var l = figures.length;
-	figures[l-1] = [startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; // ce truc ne marche pas pour l'instant : ça ne sauvegarde que les 4 coordonnées.
-	//figures.splice(l-1,1,[startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]); // autre méthode, au cas où...
+	figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 	
 	// console.log(figures[l-1]); // pour le débuggage
 	// console.log(stroke_color);
@@ -145,7 +282,6 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
   handleMouseOut(e);
 });
 
-console.log(figures);
 
 // function onclick(e) {
 // 	// je récupère la position de la souris
