@@ -1,4 +1,4 @@
-<div id=#title><H1 id="yourProjet">VOS PROJETS</H1></div>
+<div><H1 id="yourProjet">VOS PROJETS</H1></div>
 <section id="section_projet">
     <div class="newProjet">
         <button class="newProjetBtn" id="" type="button" onclick="window.location.href = '/new_project';"></btn>
