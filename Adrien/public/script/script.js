@@ -85,6 +85,23 @@ let figures = []
 var post_json = document.querySelector("#post_json").innerHTML;
 figures = JSON.parse(post_json);
 
+for (var i = 0; i < figures.length - 1; i++) {
+	if(figures[i] != [0,0,0,0,'','',0]) {
+		if (figures[i][0] === 'rectangle') {
+			rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+		}
+		else if (figures[i][0] === 'triangle') {
+			triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+		}
+		else if (figures[i][0] === 'ellipse') {
+			ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+		}
+		// else {
+		// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+		// }
+	}
+}
+
 function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epaisseur_contour) {
 	ctx.fillStyle = couleur_remplissage;
 	ctx.fillRect(x,y,L,H);
@@ -160,7 +177,10 @@ function handleMouseDown(e) {
 
     // set a flag indicating the drag has begun
     isDown = true;
-	figures.push(['Aucun',0,0,0,0,'','',0]);
+	
+	if (outil != 'Aucun'){
+		figures.push([outil,0,0,0,0,'','',0]);
+	}
 }
 
 
@@ -263,7 +283,10 @@ function handleMouseMove(e) {
 	
 	
 	var l = figures.length;
-	figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+	if (outil != 'Aucun'){
+		figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+	}
+	
 	
 	// console.log(figures[l-1]); // pour le débuggage
 	// console.log(stroke_color);
