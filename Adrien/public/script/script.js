@@ -69,7 +69,7 @@ var canvasOffset = canvas.getBoundingClientRect();
 var offsetX = canvasOffset.left;
 var offsetY = canvasOffset.top;
 
-// this flage is true when the user is dragging the mouse
+// this flag is true when the user is dragging the mouse
 var isDown = false;
 
 // these vars will hold the starting mouse position
@@ -85,8 +85,8 @@ let figures = []
 var post_json = document.querySelector("#post_json").innerHTML;
 figures = JSON.parse(post_json);
 
-for (var i = 0; i < figures.length - 1; i++) {
-	if(figures[i] != [0,0,0,0,'','',0]) {
+for (var i = 0; i < figures.length; i++) {
+	if(figures[i][5] != '') {
 		if (figures[i][0] === 'rectangle') {
 			rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
 		}
@@ -252,8 +252,8 @@ function handleMouseMove(e) {
     
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
-	for (var i = 0; i < figures.length - 1; i++) {
-		if(figures[i] != [0,0,0,0,'','',0]) {
+	for (var i = 0; i < figures.length; i++) {
+		if(figures[i][5] != '') {
 			if (figures[i][0] === 'rectangle') {
 				rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
 			}
