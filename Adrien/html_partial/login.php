@@ -1,4 +1,4 @@
-<section class="bodyLogin">  
+<body class="bodyLogin">  
     <main class="loginMenu"> 
         <button class= "signIn" id="">
             <a id="inscrire" href="/sign_in">Sign In</a>
@@ -15,4 +15,4 @@
             </div>
         </div>
     </main>
-</section>
+</body>
