@@ -2,9 +2,8 @@
     <nav>
         <div class="tools">
             <button class="btnTools"><img src="img/icons\texte.png" alt="T" /></button>
-            <button id="btn_rect" class="btnTools"><img src="img/icons\square.png" alt="square" /></button>
             <button class="btnTools"><img src="img/icons\la-gomme.png" alt="gomme" /></button>
-            <button class="btnTools"><img src="img/icons\addImage.png" alt="addImage" /></button>
+            <button id="btn_rect" class="btnTools"><img src="img/icons\square.png" alt="square" /></button>
             <button id="btn_tri" class="btnTools"><img src="img/icons\triangle.png" alt="triangle" /></button>
             <button id = "btn_elli" class="btnTools"><img src="img/icons\cercle.png" alt="cercle" /></button>
         </div>
