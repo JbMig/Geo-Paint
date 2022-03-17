@@ -2,15 +2,30 @@
 // La partie à partir du premier / dans l'url
 $uri = $_SERVER['REQUEST_URI'];
 
+//permet de ne pas se balader dans le site sans session user
+// si $uri == /entrer.php
 if ($uri == '/entrer.php') {
+    //si pas de session user
     if (!isset($_SESSION['user'])) {
+        //je vais à login
         header('Location: /login');
         exit;
-    } else {
+    } else { //sinon je vais à projet
         header('Location: /projet');
         exit;
     }
+// sinon si $uri différent de login ou sign_in
+} else if ($uri != '/login' && $uri != '/sign_in') {
+    //si pas de session user
+    if (!isset($_SESSION['user'])) {
+        //je vais à login
+        header('Location: /login');
+        exit;
+    }
 }
+
+
+
 switch ($uri) {
     case '/login':
         require_once __DIR__ . '/php_partial/login.php';
