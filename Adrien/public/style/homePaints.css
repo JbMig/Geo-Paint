@@ -140,7 +140,6 @@ img {
   width: 70px;
   height: 70px;
   margin-bottom: 50px;
-
 }
 
 .newProjetBtn{
@@ -155,7 +154,6 @@ img {
   transition-duration:0.5 ;
   transition: 1s;
 }
-
 .newProjetBtn:hover{
   height: 60px;
 
@@ -173,6 +171,10 @@ img {
   border-radius : 4px;
   margin-bottom: 100px;
 }
+/* .logo{
+  position:relative;
+  width: ;
+} */
 
 .projetBtn{
   width: 100%;
@@ -314,9 +316,27 @@ img {
   width: 100px;
   height: 40px;
   background-color: #90BAAD;
-  margin-top: -200px;
-  margin-left:-240px;
+  margin-top: -300px;
+  margin-right: 450px;
   border:0px solid #000
+}
+.signIn::after{
+  content:"";
+  position: absolute;
+  width:100%;
+  height: 100%;
+  background-color: #577068;
+  z-index: -3;
+  left: 0;
+  top:0;
+  transform: rotate(30deg);
+  transform-origin: bottom left;
+}
+#inscrire:link{
+  text-decoration: none;
+  color: #000;
+  font-weight: 800;
+  font-size: 24px;
 }
 /* code adrien */
 button {
