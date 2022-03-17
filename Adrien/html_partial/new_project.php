@@ -1,12 +1,12 @@
 <header>
     <nav>
         <div class="tools">
-            <button class="btnTools"><img src="img/icons\texte.png" alt="T" /></button>
-            <button class="btnTools"><img src="img/icons\square.png" alt="square" /></button>
+		<button class="btnTools"><img src="img/icons\texte.png" alt="T" /></button>
+            <button class="btnTools" id="btn_rect"><img src="img/icons\square.png" alt="square" /></button>
             <button class="btnTools"><img src="img/icons\la-gomme.png" alt="gomme" /></button>
             <button class="btnTools"><img src="img/icons\addImage.png" alt="addImage" /></button>
-            <button class="btnTools"><img src="img/icons\triangle.png" alt="triangle" /></button>
-            <button class="btnTools"><img src="img/icons\cercle.png" alt="cercle" /></button>
+            <button class="btnTools" id="btn_tri"><img src="img/icons\triangle.png" alt="triangle" /></button>
+            <button class="btnTools" id = "btn_elli"><img src="img/icons\cercle.png" alt="cercle" /></button>
         </div>
         <div class="middleTools">
             <button class="btnMiddleTools"><img src="img/icons\format.png" alt="format" /></button>
