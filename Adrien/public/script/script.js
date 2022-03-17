@@ -82,6 +82,8 @@ var startY;
 // var y2 = null
 
 let figures = []
+var post_json = document.querySelector("#post_json").innerHTML;
+figures = JSON.parse(post_json);
 
 function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epaisseur_contour) {
 	ctx.fillStyle = couleur_remplissage;
@@ -306,9 +308,6 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 
 // tout ce qui suit appartient à la propriété intéléctuel de Adrien (dsl pour les fautes, il est tard)
 // mes variables
-
-var data = [...figures];
-var array_json = JSON.stringify(data); //transform data en json
 var save = document.querySelector("#save");
 var get_json = document.querySelector("#get_json");
 var open_form = document.querySelector("#open_form");
@@ -317,10 +316,14 @@ var open_form = document.querySelector("#open_form");
 // console.log(array_json);
 
 // mes fonctions
+
 function switch_hidden() { //fait apparaitre le formulaire
-    form.style.visibility = "visible";
+  console.log(figures);
+  form.style.visibility = "visible";
 }
 function save_it() { //récupère le json dans le input
+    var data = [...figures];
+    let array_json = JSON.stringify(data); //transform data en json
     get_json.value = array_json;
 }
 
