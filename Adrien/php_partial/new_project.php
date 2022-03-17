@@ -34,6 +34,13 @@ if ("POST" === $_SERVER["REQUEST_METHOD"]) {
                 ":oneData" => $data
             ]);
     }
+    $maRequete = $pdo->prepare("SELECT `id`, `project_name`, `data`, `user_id` FROM `projet` WHERE `project_name` = :projectName AND `user_id` = :userId;");
+        $maRequete->execute([
+            ":projectName" => $projectName,
+            ":userId" => $user_id
+        ]);
+    
+    $projet_server = $maRequete->fetch();
     $_SESSION["projet"] = $projet_server;
     http_response_code(302);
     header('Location: /load_project');
