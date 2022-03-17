@@ -145,6 +145,25 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
   handleMouseOut(e);
 });
 
+// function onclick(e) {
+// 	// je récupère la position de la souris
+// 	mouseX = parseInt(e.clientX - offsetX);
+//     mouseY = parseInt(e.clientY - offsetY);
+// 	var l=figures.length;
+// 	i = l;
+// 	while (i > 0){		// je parcours la liste à l'envers pour sélectionner la dernière figure construite.
+// 		if (figures[i][0] < mouseX && mouseX < figures[i][2]){
+// 			console.log('figure ' + i + ' sélectionnée');
+// 			i = 0; 		// j'ai trouvé une figure donc je sors de la boucle.
+// 		}
+// 		else {
+// 			i-=1;
+// 		}
+// 	}
+// } //ça ne marche pas...
+
+
+
 
 
 // tout ce qui suit appartient à la propriété intéléctuel de Adrien (dsl pour les fautes, il est tard)
