@@ -9,6 +9,12 @@ function outil_rectangle() {
 	else if (outil === 'ellipse') {
 		outil = 'rectangle';
 	}
+	else if (outil === 'hand') {
+		outil = 'rectangle';
+	}
+	else if (outil === 'size') {
+		outil = 'rectangle';
+	}
 	else {
 		outil = 'Aucun';
 	}
@@ -24,6 +30,12 @@ function outil_triangle() {
 		outil = 'triangle';
 	}
 	else if (outil === 'ellipse') {
+		outil = 'triangle';
+	}
+	else if (outil === 'hand') {
+		outil = 'triangle';
+	}
+	else if (outil === 'size') {
 		outil = 'triangle';
 	}
 	else {
@@ -44,6 +56,12 @@ function outil_ellipse() {
 	else if (outil === 'rectangle') {
 		outil = 'ellipse';
 	}
+	else if (outil === 'hand') {
+		outil = 'ellipse';
+	}
+	else if (outil === 'size') {
+		outil = 'ellipse';
+	}
 	else {
 		outil = 'Aucun';
 	}
@@ -51,13 +69,59 @@ function outil_ellipse() {
 }
 document.getElementById("btn_elli").onclick = outil_ellipse;
 
+function outil_main() {			// sert à sélectionner une figure
+    if (outil === 'Aucun') {
+		outil = 'hand';
+	}
+	else if (outil === 'triangle') {
+		outil = 'hand';
+	}
+	else if (outil === 'rectangle') {
+		outil = 'hand';
+	}
+	else if (outil === 'ellipse') {
+		outil = 'hand';
+	}
+	else if (outil === 'size') {
+		outil = 'hand';
+	}
+	else {
+		outil = 'Aucun';
+	}
+	console.log(outil) // pour vérifier que ça fonctionne
+}
+document.getElementById("btn_hand").onclick = outil_main;
+
+function outil_deformer() {			// sert à sélectionner une figure
+    if (outil === 'Aucun') {
+		outil = 'size';
+	}
+	else if (outil === 'triangle') {
+		outil = 'size';
+	}
+	else if (outil === 'rectangle') {
+		outil = 'size';
+	}
+	else if (outil === 'ellipse') {
+		outil = 'size';
+	}
+	else if (outil === 'hand') {
+		outil = 'size';
+	}
+	else {
+		outil = 'Aucun';
+	}
+	console.log(outil) // pour vérifier que ça fonctionne
+}
+document.getElementById("btn_resize").onclick = outil_deformer;
+
 // get references to the canvas and context
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var stroke_color = 'rgb(0, 0, 255)';				// par défaut. Il faudra changer ça plus tard en fonction des choix de l'utilisateur.
-var fill_color = 'rgb(255, 255, 0)';				// idem
-var stroke_thickness = 2;							// idem
+var stroke_color = 'rgb(0, 0, 0)';				// par défaut. Il faudra changer ça plus tard en fonction des choix de l'utilisateur.
+var fill_color = 'rgb(0, 0, 0)';				// idem
+var stroke_thickness = 2;						// idem
 
 // style the context
 ctx.strokeStyle = stroke_color;
@@ -178,7 +242,7 @@ function handleMouseDown(e) {
     // set a flag indicating the drag has begun
     isDown = true;
 	
-	if (outil != 'Aucun'){
+	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures.push([outil,0,0,0,0,'','',0]);
 	}
 }
@@ -277,13 +341,13 @@ function handleMouseMove(e) {
 
     // draw a new rect from the start position 
     // to the current mouse position
-    if (outil != 'Aucun') {
+    if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		ctx.strokeRect(startX, startY, width, height);
 	}
 	
 	
 	var l = figures.length;
-	if (outil != 'Aucun'){
+	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 	}
 	
