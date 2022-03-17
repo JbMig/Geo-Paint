@@ -201,7 +201,7 @@ img {
   display: flex;
   align-items: center;
   margin-bottom:10px;
-  padding-right:20px;
+  padding-right:0px;
   border-width: 0px;
   transition-property: width;
   transition-delay: 0.2s;
@@ -210,11 +210,12 @@ img {
   border-radius: 4px 0px 0px 4px;
 }
 .delete:hover{
-  width:40px ;
+  width:30px;
 }
 #dash{ 
   width: 15px;
   height: 15px;
+  padding: 2px;
 }
 
 #name{
@@ -291,7 +292,7 @@ img {
   border-radius: 3px;
   padding-left: 5px;
 }
-#passwords{
+.passwords{
   display: flex;
   justify-content: center;
   border: 0px solid #000;
@@ -301,7 +302,7 @@ img {
   margin-left:10px;
   margin-top:30px;
 }
-#Emails{
+.emails{
   display: flex;
   justify-content: center;
   border: 0px solid #000;
@@ -332,11 +333,30 @@ img {
   transform: rotate(30deg);
   transform-origin: bottom left;
 }
+#inscrire:visited{
+  text-decoration: none;
+  color: #000;
+}
+#inscrive:active{
+  text-decoration: none;
+  color: #000;
+}
 #inscrire:link{
   text-decoration: none;
   color: #000;
   font-weight: 800;
   font-size: 24px;
+}
+.formInput .emailsign{
+  margin-left:40px ;
+  margin-bottom: 10px;
+} 
+.formInput .passwordssign{
+  margin-left:35px ;
+  margin-bottom: 10px;
+} 
+.green{
+  color: #90BAAD;
 }
 /* code adrien */
 button {
