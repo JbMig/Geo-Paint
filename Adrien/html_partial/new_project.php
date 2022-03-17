@@ -11,7 +11,12 @@
             <button class="btnMiddleTools" id="btn_resize"><img src="img/icons\format.png" alt="format" /></button>
             <button class="btnMiddleTools" id="btn_hand"><img src="img/icons\hand.png" alt="hand" /></button>
             <button class="btnMiddleTools" id="open_form"><img src="img/icons\save-file.png" alt="save-file"></button>
-            <button class="btnMiddleTools"><img src="img/icons\download.png" alt="downloads" /></button>
+            
+            <!-- boutons de création png et pdf -->
+            <button class="btnMiddleTools" id="menu"><img src="img/icons\download.png" alt="downloads" /></button>
+            <button id="convertirPng">télécharger en png</button>
+            <button id="convertirPdf">télécharger en pdf</button>
+
         </div>
         <!-- formulaire Adrien -->
         <div id="post_json" type="text">[]</div>
@@ -44,4 +49,7 @@
         </div>
     </div>
 </header>
+
+<!-- Bibliothèque qui permet le téléchargement en pdf-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
 <script src="script/script.js?<?php echo time(); ?>"></script>

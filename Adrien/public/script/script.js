@@ -445,3 +445,63 @@ function save_it() { //récupère le json dans le input
 // mes events
 open_form.addEventListener("click", switch_hidden)
 save.addEventListener("click", save_it);
+
+
+// télécharger en png et pdf
+
+//permet de cacher les menus
+function hide(){
+    document.getElementById('png').parentNode.removeChild(document.querySelector('#png'))
+    changementPng.style.visibility="hidden";
+    changementPdf.style.visibility="hidden";
+    
+}
+
+
+//permet de télécharger le canvas en png
+
+
+function changePng(){
+	// if (document.querySelector("png")==true){
+	// 	document.getElementById('png').parentNode.removeChild(document.querySelector('#png'));
+	// }
+    var URL = document.querySelector("#canvas").toDataURL("image/png");
+    var a = document.createElement('a');
+    // var titre=document.querySelector($titre);
+    a.download = "Nouveau_fichier.png";
+    a.href = URL;
+    var link = document.createTextNode("Télécharger");  
+    a.appendChild(link); 
+    document.body.appendChild(a);
+    a.id="png";
+    var download=document.querySelector('#png');
+    // changementPng.style.visibility="collapse";
+    download.addEventListener("click",hide);
+}
+
+function changePDF(){
+    var dataURL = canvas.toDataURL('image/jpeg');
+    let pdf = new jsPDF();
+    pdf.addImage(dataURL, 'JPEG', 0, 0);
+    pdf.save("nouveau_fichier.pdf");
+    changementPng.style.visibility="hidden";
+    changementPdf.style.visibility="hidden";
+    menu.style.visibility="initial";
+}
+
+function change(){
+    let changementPng = document.querySelector("#convertirPng");
+    let changementPdf = document.querySelector("#convertirPdf");
+    changementPng.style.visibility="initial";
+    changementPdf.style.visibility="initial";
+    changementPng.addEventListener("click",changePng);
+    changementPdf.addEventListener("click",changePDF);
+}
+
+let changementPng = document.querySelector("#convertirPng");
+let changementPdf = document.querySelector("#convertirPdf");
+changementPng.style.visibility="hidden";
+changementPdf.style.visibility="hidden";
+var canvas = document.querySelector('canvas');
+var accepte = document.querySelector('#menu');
+accepte.addEventListener("click",change);
