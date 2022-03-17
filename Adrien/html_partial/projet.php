@@ -13,10 +13,12 @@
                 <button class="projetBtn" id="" type="submit">
                     <span id="name" ><?= $projet["project_name"]?></span>
                     <span id="date"><?=$projet["date"] ?></span>
-                    <input type="hidden" id="project_name" name="project_name" value="<?= $projet["project_name"]?>">
+                    <input type="hidden" class="project_name" name="project_name" value="<?= $projet["project_name"]?>">
                 </button>
             </form>
-            <button class="delete" id=""><img id="dash"src="img/bin.png" alt="BIN" ></button>
+            <a class="delete" href="back_office/delete_projet.php?id=<?= $projet["id"] ?>">
+                <img id="dash"src="img/bin.png" alt="BIN" >
+            </a>
         </div>
     <?php endforeach; ?>
 </section>
