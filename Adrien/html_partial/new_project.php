@@ -27,7 +27,21 @@
     <div class="draw">
         <canvas class="bigSquare" id="canvas" width=850 height=850></canvas>
         <div class="colorChoise">
-            <div class="colors"></div>
+			<div class="colors">
+				<div>
+					<input type="color" id="select_fill_color">Couleur de remplissage</input>
+					<button id="confirm_fill_color">Confirmer</button>
+				</div>
+				<div>
+					<input type="color" id="select_stroke_color">Couleur de contour</input>
+					<button id="confirm_stroke_color">Confirmer</button>
+				</div>
+				<div>
+					<input type="number" min="1" max="50" step="1" id="select_stroke_thickness">Épaisseur de contour</input>
+					<button id="confirm_stroke_thickness">Confirmer</button>
+				</div>
+			</div>
         </div>
     </div>
 </header>
+<script src="script/script.js?<?php echo time(); ?>"></script>
