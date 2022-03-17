@@ -301,8 +301,27 @@ function outil_gomme() {
 }
 document.getElementById("btn_erase").onclick = outil_gomme;
 
+// console.log(document.getElementById("select_fill_color"));
 
-	
+function changer_couleur_remplissage() {
+	let new_color = document.getElementById("select_fill_color").value;
+	fill_color = new_color;
+}
+document.getElementById("confirm_fill_color").onclick = changer_couleur_remplissage;
+
+function changer_couleur_contour() {
+	let new_color = document.getElementById("select_stroke_color").value;
+	stroke_color = new_color;
+}
+document.getElementById("confirm_stroke_color").onclick = changer_couleur_contour;
+
+function changer_epaisseur_contour() {
+	let number = document.getElementById("select_stroke_thickness").value;
+	stroke_thickness = number;
+}
+document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_contour;
+
+
 document.getElementById('canvas').addEventListener('mousedown', function(e) {
   handleMouseDown(e);
 });
