@@ -426,6 +426,7 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 var save = document.querySelector("#save");
 var get_json = document.querySelector("#get_json");
 var open_form = document.querySelector("#open_form");
+var the_form = document.querySelector("#form")
 
 // test variables
 // console.log(array_json);
@@ -433,8 +434,7 @@ var open_form = document.querySelector("#open_form");
 // mes fonctions
 
 function switch_hidden() { //fait apparaitre le formulaire
-  console.log(figures);
-  form.style.visibility = "visible";
+  the_form.style.visibility = "visible";
 }
 function save_it() { //récupère le json dans le input
     var data = [...figures];
@@ -505,3 +505,14 @@ changementPdf.style.visibility="hidden";
 var canvas = document.querySelector('canvas');
 var accepte = document.querySelector('#menu');
 accepte.addEventListener("click",change);
+
+// // Théo //
+function switchVisible(){
+	the_form.style.visibility = "hidden";
+}
+// let body_var = document.querySelector("body").onclick = function(e) {
+// 	if(e.target != )
+// }
+
+let cross = document.querySelector(".cross")
+cross.addEventListener("click", switchVisible)
