@@ -294,6 +294,15 @@ function handleMouseMove(e) {
 	}
 	
 
+function outil_gomme() {
+	alert("Toutes les figures du canvas vont être effacées.");
+	figures = [];
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+document.getElementById("btn_erase").onclick = outil_gomme;
+
+
+	
 document.getElementById('canvas').addEventListener('mousedown', function(e) {
   handleMouseDown(e);
 });
