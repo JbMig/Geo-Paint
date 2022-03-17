@@ -111,7 +111,7 @@ img {
 #section_projet{
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  margin:100px 0px 0px 170px;
+  margin:100px 0px 0px 100px;
   padding: 0px 0px 50px 0px;
 }
 /*-----------New Projet--------------*/
@@ -367,4 +367,32 @@ button {
 }
 #post_json {
   visibility: hidden;
+}
+
+/* ---------------------Hidden pop-up---------------- */
+
+#form{
+  position: relative;
+  width: 250px;
+  height:150px ;
+  background-color: #90BAAD;
+  border-radius: 3px;
+  top: 300px;
+  right: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+#save{
+  position: relative;
+  width: 100px;
+  height:40px ;
+  background-color: #958FA3;
+  border-radius: 3px;
+  border: 0px;
+  margin-top: 20px;
+
 }
