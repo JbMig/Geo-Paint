@@ -1,6 +1,3 @@
-<?php
-    $title = "login";
-?>
 <header>
         <button>
             <a href="/sign_in">S'inscrire</a>

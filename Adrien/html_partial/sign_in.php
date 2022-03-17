@@ -1,6 +1,3 @@
-<?php
-    $title = "sign in";
-?>
 <main>
     <form method="POST">
         <input type="email" id="email" name="mail" placeholder="email">
