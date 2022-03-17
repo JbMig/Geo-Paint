@@ -1,5 +1,6 @@
 <?php
 ob_start();
+$title = "sign in";
 if($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail = filter_input(INPUT_POST, "mail");
     $mdp = hash("sha512", filter_input(INPUT_POST, "mdp"));

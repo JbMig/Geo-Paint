@@ -1,6 +1,7 @@
 <?php
 // Ouvre un tampon qui va stocker tout ce qui va être afficher
 ob_start();
+$title = "login";
 
 if ("POST" === $_SERVER["REQUEST_METHOD"]) {
     require_once __DIR__ . "/../database/pdo.php";
