@@ -19,14 +19,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     //récupère le résultat de la requète
     $user = $maRequete->fetch();
-    //si l'utilisateur existe déjà dans la database
-    if(in_array($mail, $user)) {
-        $message = "l'utilisateur existe déjà";
-        //indique que le serveur refuse d'autoriser la requête 
-        http_response_code(403);
-        //j'appelle ma bannière html pour afficher un message d'erreur
-        require_once __DIR__ . "/../html_partial/alerts/baniere.php";
-    } else { //sinon j'ajoute le résultat de la requète dans la database
+    if($user == false) { //si aucun résultat
+        //j'ajoute le résultat du formulaire dans la database
         $maRequete = $pdo->prepare("INSERT INTO `user` (`mail`, `mdp`) VALUES(:mail, :mdp)");
         $maRequete->execute([
             ":mail" => $mail,
@@ -36,6 +30,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         http_response_code(302);
         header('Location: /login'); //je vais à la page login
         exit();
+    } else { //sinon
+        $message = "l'utilisateur existe déjà";
+        //indique que le serveur refuse d'autoriser la requête 
+        http_response_code(403);
+        //j'appelle ma bannière html pour afficher un message d'erreur
+        require_once __DIR__ . "/../html_partial/alerts/baniere.php";
+
     }
 }
 //j'appelle l'html de cette page
