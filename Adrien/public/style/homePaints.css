@@ -449,3 +449,16 @@ button {
 #select_stroke_thickness{
   border: 1px solid #cecece;
 }
+#png{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  height: 40px;
+  width: 190px;
+  background-color: #958FA3;
+  position: absolute;
+  text-decoration: none;
+  padding-left: 5px;
+  color: white;
+}
