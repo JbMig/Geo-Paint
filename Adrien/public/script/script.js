@@ -225,7 +225,7 @@ function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, ep
 }
 
 
-// var forme_selectionnee = None
+let forme_selectionnee = 'None'
 
 
 
@@ -245,14 +245,27 @@ function handleMouseDown(e) {
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures.push([outil,0,0,0,0,'','',0]);
 	}
-	// elif (outil == 'hand' || outil == 'size'){
-	// 	var l=figures.length;
-	// 	var i = l-1;
-	// 	while (i > 0) {
-
-	// 	}
-
-	// }
+	else if (outil == 'hand' || outil == 'size'){
+		// je récupère la position de la souris :
+		mouseX = parseInt(e.clientX - offsetX);
+		mouseY = parseInt(e.clientY - offsetY);
+		// je parcours la liste à l'envers car, si je suis dans la zone de sélection de plusieurs formes, je dois prendre celle du dessus, qui est la dernière tracée.
+		var l=figures.length;
+		var i = l-1;
+		while (i >= 0) {
+			// j'ai besoin de connaitre les coordonnées de la figure, pour comparer avec la position de la souris.
+			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+			// je compare ces coordonnées à celles de la souris pour savoir si je suis dans la zone de sélection de la forme.
+			if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
+				forme_selectionnee = figures[i];
+				i = -1; // pour sortir de la boucle
+				console.log(forme_selectionnee); // pour le débuggage
+			}
+			else {
+				i -= 1;
+			}
+		}	
+	}
 }
 
 
@@ -278,6 +291,9 @@ function handleMouseUp(e) {
 	// else {
 	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
 	// }
+	else if (outil == 'hand' || outil == 'size'){
+		forme_selectionnee = 'None';
+	}
 }
 
 
@@ -366,12 +382,39 @@ function handleMouseMove(e) {
 	}
 	
 
-function outil_gomme() {
+function outil_gomme() {		// efface complètement le canvas
 	alert("Toutes les figures du canvas vont être effacées.");
 	figures = [];
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 document.getElementById("btn_erase").onclick = outil_gomme;
+
+
+function KeyPress(e) {			// CTRL + Z pour annuler la dernière construction
+    var evtobj = window.event? event : e
+    if (evtobj.keyCode == 90 && evtobj.ctrlKey){
+        figures.splice(-1);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //Fonction pour afficher
+		for (var i = 0; i < figures.length; i++) {
+			if(figures[i][5] != '') {
+				if (figures[i][0] === 'rectangle') {
+					rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+				}
+				else if (figures[i][0] === 'triangle') {
+					triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+				}
+				else if (figures[i][0] === 'ellipse') {
+					ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+				}
+				// else {
+				// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+				// }
+			}
+		}
+	}
+}
+document.onkeydown = KeyPress;
 
 // console.log(document.getElementById("select_fill_color"));
 
