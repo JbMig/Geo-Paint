@@ -93,12 +93,12 @@ img {
   justify-content: space-around;
 }
 .bigSquare{
-  background-color: #cecece;
-  border: 0px solid #080808;
+  background-color: #fff;
+  border: 1px solid #080808;
   margin : 50px 50px 50px 50px
 }
 .colorChoise{
-  width: 200px;
+  width: 300px;
   height: 400px;
   background-color: #fff;
   border: 2px solid #000000;
@@ -385,7 +385,6 @@ button {
   flex-direction: column;
 
 }
-
 #save{
   position: relative;
   width: 100px;
@@ -395,4 +394,58 @@ button {
   border: 0px;
   margin-top: 20px;
 
+}
+
+/* Telechargement pdf ou png  */
+
+#convertir{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnConv{
+  background: #958FA3;
+  border: 0px solid #000;
+  border-radius: 3px;
+  width: 100px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+/* choix des couleurs  */
+
+
+.colors{
+  align-content: center;
+  width: 200;
+  height: 230px;
+  border: 0px solid #000;
+  padding-left: 50px;
+
+}
+
+.confirmBtn{
+  border: 0px solid #000;
+  border-radius: 3px;
+  background: #958FA3;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.colorSelection{
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.textColor{
+  margin-left: 1px;
+  margin-bottom: 4px;
+}
+.selectColor{
+  border:0px solid #cecece;
+  border-radius:1px ;
+  background-color: #fff;
+}
+#select_stroke_thickness{
+  border: 1px solid #cecece;
 }
