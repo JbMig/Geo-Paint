@@ -39,7 +39,7 @@
         <div class="colorChoise">
             <div class="colors">
 				<div>
-					<input type="color" id="select_fill_color">Couleur de remplissage</input>
+					<input type="color" id="select_fill_color" value=#FFFFFF>Couleur de remplissage</input>
 					<button id="confirm_fill_color">Confirmer</button>
 				</div>
 				<div>
