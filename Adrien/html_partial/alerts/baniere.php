@@ -1,2 +1,2 @@
 <?php$title = "404"?>
-<div class="alert <?= $variant ?>"><?= $message ?></div>
+<div class="alert"><?= $message ?></div>

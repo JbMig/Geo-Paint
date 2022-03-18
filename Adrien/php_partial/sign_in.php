@@ -21,7 +21,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $maRequete->fetch();
     //si l'utilisateur existe déjà dans la database
     if(in_array($mail, $user)) {
-        $variant = "danger";
         $message = "l'utilisateur existe déjà";
         //indique que le serveur refuse d'autoriser la requête 
         http_response_code(403);

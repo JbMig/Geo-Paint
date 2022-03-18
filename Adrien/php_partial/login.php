@@ -20,7 +20,6 @@ if ("POST" === $_SERVER["REQUEST_METHOD"]) {
     $user = $maRequete->fetch();
     //si aucun résultat ou si le mot de passe est invalide
     if (!$user || $user["mdp"] !== $mdp) {
-        $variant = "danger";
         $message = "Utilisateur invalide";
         //indique que le serveur refuse d'autoriser la requête 
         http_response_code(403);
