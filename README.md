@@ -1,6 +1,10 @@
 # Geo-Paint
 Faires des formes modifiables sur paint
 
+## lien maquette et architecture
+https://www.figma.com/file/vG2u6oS7TFsaGQyI6LOOje/archi_paint
+https://www.figma.com/file/381rHGrgb3mjyFvzejZCty/Paints
+
 ## pour commencer:
 Vérifiez que le ports utilisé est sur 3306 pour Mysql
 sinon vous pouvez changer le port dans le dossier database puis dans le fichier pdo.php
