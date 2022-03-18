@@ -225,7 +225,7 @@ function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, ep
 }
 
 
-
+// var forme_selectionnee = None
 
 
 
@@ -245,6 +245,14 @@ function handleMouseDown(e) {
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures.push([outil,0,0,0,0,'','',0]);
 	}
+	// elif (outil == 'hand' || outil == 'size'){
+	// 	var l=figures.length;
+	// 	var i = l-1;
+	// 	while (i > 0) {
+
+	// 	}
+
+	// }
 }
 
 
@@ -472,7 +480,9 @@ function changePng(){
     a.href = URL;
     var link = document.createTextNode("Télécharger");  
     a.appendChild(link); 
-    document.body.appendChild(a);
+	var conversion = document.querySelector("#convertir")
+	conversion.appendChild(a)
+    // document.body.appendChild(a);
     a.id="png";
     var download=document.querySelector('#png');
     // changementPng.style.visibility="collapse";
