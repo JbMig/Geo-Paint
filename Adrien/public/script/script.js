@@ -120,7 +120,7 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 var stroke_color = 'rgb(0, 0, 0)';				// par défaut. Il faudra changer ça plus tard en fonction des choix de l'utilisateur.
-var fill_color = 'rgb(0, 0, 0)';				// idem
+var fill_color = 'rgb(255, 255, 255)';				// idem
 var stroke_thickness = 2;						// idem
 
 // style the context
