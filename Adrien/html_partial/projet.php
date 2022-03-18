@@ -16,6 +16,7 @@
                     <input type="hidden" class="project_name" name="project_name" value="<?= $projet["project_name"]?>">
                 </button>
             </form>
+            <!-- delete_projet est dans le back office pour se trouver à la racine -->
             <a class="delete" href="back_office/delete_projet.php?id=<?= $projet["id"] ?>">
                 <img id="dash"src="img/bin.png" alt="BIN" >
             </a>
