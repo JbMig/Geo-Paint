@@ -109,10 +109,14 @@ img {
 /*----------------------------- page de projet-------------------------*/ 
 
 #section_projet{
+  width: 1300px;
+  height: 100%;
+  background-color: #cecece;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  margin:100px 0px 0px 100px;
-  padding: 0px 0px 50px 0px;
+  margin:0px 0px 0px 50px;
+  padding: 0px 0px 50px 60px;
+
 }
 /*-----------New Projet--------------*/
 #yourProjet{
@@ -242,7 +246,7 @@ img {
   position: absolute;
   width: 500px;
   height: 612px;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 .welcome{
   flex-direction: column;
@@ -440,6 +444,7 @@ button {
 .textColor{
   margin-left: 1px;
   margin-bottom: 4px;
+  font-size: 20px;
 }
 .selectColor{
   border:0px solid #cecece;
@@ -461,4 +466,25 @@ button {
   text-decoration: none;
   padding-left: 5px;
   color: white;
+}
+
+/* responsive */
+
+@media screen and (max-width:800px ) {
+  .loginMenu{
+    width: 50%;
+  }
+  .signIn{
+    width: 35%;
+    padding: auto;
+    height: 13%;
+    margin-left: 15%;
+  }
+  .signIn::after{
+    width: 0%;
+  }
+  .welcome{
+    width: 80%;
+    margin-left: 10%;
+  }
 }
