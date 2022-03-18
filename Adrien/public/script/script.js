@@ -313,7 +313,10 @@ function handleMouseDown(e) {
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures.push([outil,0,0,0,0,'','',0]);
 	}
-	else if (outil == 'hand' || outil == 'size'){
+
+
+	// déplacement de figures
+	else if (outil == 'hand'){
 		// je récupère la position de la souris :
 		mouseX = parseInt(e.clientX - offsetX);
 		mouseY = parseInt(e.clientY - offsetY);
@@ -341,6 +344,10 @@ function handleMouseDown(e) {
 			old4 = figures[indice_selection][4];
 		}
 	}
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
+	// }
 }
 
 
@@ -364,9 +371,9 @@ function handleMouseUp(e) {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
 	}
 
-	// 	fonctions de déplacement / redimmensionnement de figures.
+	// déplacement de figures
 
-	else if (outil == 'hand' || outil == 'size'){
+	else if (outil == 'hand'){
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 		old1 = 0;
@@ -375,7 +382,15 @@ function handleMouseUp(e) {
 		old4 = 0;
 		forme_selectionnee = 'None';
 		indice_selection = -2;
+		console.log(forme_selectionnee); // pour le débuggage
+		console.log(indice_selection); // pour le débuggage
+
 	}
+
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
+	// }
 }
 
 
@@ -401,6 +416,25 @@ function handleMouseOut(e) {
 	else if (outil == 'hand' || outil == 'size'){
 		pass;
 	}
+
+	// déplacement de figures
+	else if (outil == 'hand'){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+		old1 = 0;
+		old2 = 0;
+		old3 = 0;
+		old4 = 0;
+		forme_selectionnee = 'None';
+		indice_selection = -2;
+		console.log(forme_selectionnee); // pour le débuggage
+		console.log(indice_selection); // pour le débuggage
+	}
+	
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
+	// }
 }
 
 function handleMouseMove(e) {
@@ -437,7 +471,8 @@ function handleMouseMove(e) {
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 	}
-	// déplacement de figures. 			NOPE !!!! PROBLEME !!!
+
+	// déplacement de figures
 	else if (outil == 'hand'){
 		moveX = mouseX - startX;
 		moveY = mouseY - startY;
@@ -449,16 +484,15 @@ function handleMouseMove(e) {
 		console.log(figures[indice_selection][1], figures[indice_selection][2], figures[indice_selection][3],figures[indice_selection][4]) //pour le débuggage
 	}
 	
-	
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
+	// }
+
 	// console.log(figures[l-1]); // pour le débuggage
 	// console.log(stroke_color);
 
 	}
-
-	// déplacement / redimmensionnement de figures.
-	// else if (outil == 'hand' || outil == 'size'){
-	// 	pass;
-	// }
 
 
 
