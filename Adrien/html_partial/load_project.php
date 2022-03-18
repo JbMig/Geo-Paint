@@ -15,8 +15,7 @@
         </div>
         
         <!-- boutons de création png et pdf -->
-        <div> 
-            
+        <div id="convertir">  
             <button id="convertirPng">télécharger en png</button>
             <button id="convertirPdf">télécharger en pdf</button>
         </div>
@@ -35,7 +34,7 @@
         <div><button class="quit" type="button" onclick="window.location.href = '/projet';">QUIT</button></div>
     </nav>
     <div class="draw">
-        <canvas class="bigSquare" id="canvas" width=850 height=850></canvas>
+        <canvas class="bigSquare" id="canvas" width=850 height=1150></canvas>
         <div class="colorChoise">
             <div class="colors">
 				<div>
