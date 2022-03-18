@@ -22,6 +22,18 @@ function outil_rectangle() {
 }
 document.getElementById("btn_rect").onclick = outil_rectangle;
 
+
+
+
+
+
+
+
+
+
+
+
+
 function outil_triangle() {
     if (outil === 'Aucun') {
 		outil = 'triangle';
@@ -115,6 +127,18 @@ function outil_deformer() {			// sert à sélectionner une figure
 }
 document.getElementById("btn_resize").onclick = outil_deformer;
 
+
+
+
+
+
+
+
+
+
+
+
+
 // get references to the canvas and context
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -145,26 +169,57 @@ var startY;
 // var y1 = null
 // var y2 = null
 
-let figures = []
-var post_json = document.querySelector("#post_json").innerHTML;
-figures = JSON.parse(post_json);
 
-for (var i = 0; i < figures.length; i++) {
-	if(figures[i][5] != '') {
-		if (figures[i][0] === 'rectangle') {
-			rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+
+
+
+
+
+
+
+
+
+
+
+let figures = [];	// variable dans laquelle toutes les informations relatives aux différentes figures seront stockées.
+
+function draw() {
+	for (var i = 0; i < figures.length; i++) {
+		if(figures[i][5] != '') {
+			if (figures[i][0] === 'rectangle') {
+				rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			else if (figures[i][0] === 'triangle') {
+				triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			else if (figures[i][0] === 'ellipse') {
+				ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			// else {
+			// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+			// }
 		}
-		else if (figures[i][0] === 'triangle') {
-			triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-		}
-		else if (figures[i][0] === 'ellipse') {
-			ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-		}
-		// else {
-		// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-		// }
 	}
 }
+
+
+
+// Chargement de la sauvegarde éventuelle
+var post_json = document.querySelector("#post_json").innerHTML;
+figures = JSON.parse(post_json);
+draw();
+
+
+
+
+
+
+
+
+
+
+
+
 
 function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epaisseur_contour) {
 	ctx.fillStyle = couleur_remplissage;
@@ -225,9 +280,22 @@ function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, ep
 }
 
 
+
+
+
+
+
+
+
+
+
 let forme_selectionnee = 'None'
+let indice_selection = -2;
 
-
+let old1 = 0;
+let old2 = 0;
+let old3 = 0;
+let old4 = 0;
 
 function handleMouseDown(e) {
     // console.log('handleMouseDown');
@@ -258,13 +326,20 @@ function handleMouseDown(e) {
 			// je compare ces coordonnées à celles de la souris pour savoir si je suis dans la zone de sélection de la forme.
 			if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
 				forme_selectionnee = figures[i];
+				indice_selection = i;
 				i = -1; // pour sortir de la boucle
 				console.log(forme_selectionnee); // pour le débuggage
 			}
 			else {
 				i -= 1;
 			}
-		}	
+		}
+		if (forme_selectionnee != 'None') {
+			old1 = figures[indice_selection][1];
+			old2 = figures[indice_selection][2];
+			old3 = figures[indice_selection][3];
+			old4 = figures[indice_selection][4];
+		}
 	}
 }
 
@@ -288,11 +363,18 @@ function handleMouseUp(e) {
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
 	}
-	// else {
-	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-	// }
+
+	// 	fonctions de déplacement / redimmensionnement de figures.
+
 	else if (outil == 'hand' || outil == 'size'){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+		old1 = 0;
+		old2 = 0;
+		old3 = 0;
+		old4 = 0;
 		forme_selectionnee = 'None';
+		indice_selection = -2;
 	}
 }
 
@@ -315,9 +397,10 @@ function handleMouseOut(e) {
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
 	}
-	// else {
-	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-	// }
+	// fonctions de déplacement / redimmensionnement de figures.
+	else if (outil == 'hand' || outil == 'size'){
+		pass;
+	}
 }
 
 function handleMouseMove(e) {
@@ -325,54 +408,45 @@ function handleMouseMove(e) {
     // console.log(e);
     e.preventDefault();
     e.stopPropagation();
-    // if we're not dragging, just return
+    // met fin à la fonction si on relache le bouton de la souris sans avoir opéré de déplacement.
     if (!isDown) {
         return;
     }
 
-    // get the current mouse position
+    // on a besoin de connaitre en continu la position du curseur de la souris.
     mouseX = parseInt(e.clientX - offsetX);
     mouseY = parseInt(e.clientY - offsetY);
 
-    // Put your mousemove stuff here
-
-    // clear the canvas
-    
+    // on efface le canvas et on redessine les figure en permanence, pour afficher un aperçu de la figure que l'on trace, sans que des dizines de figures quasi-identiques n'apparaissent.
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	
-	for (var i = 0; i < figures.length; i++) {
-		if(figures[i][5] != '') {
-			if (figures[i][0] === 'rectangle') {
-				rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-			}
-			else if (figures[i][0] === 'triangle') {
-				triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-			}
-			else if (figures[i][0] === 'ellipse') {
-				ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-			}
-			// else {
-			// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-			// }
-		}
-	}
+	draw();
 	console.log(figures); // pour le débuggage
 
-    // calculate the rectangle width/height based
-    // on starting vs current mouse position
+    // on calcule la hauteur et la largeur du rectangle de tracé en fonction de la position du curseur par rapport à sa position de départ.
     var width = mouseX - startX;
     var height = mouseY - startY;
 
-    // draw a new rect from the start position 
-    // to the current mouse position
+    // on dessine un rectangle de tracé
     if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		ctx.strokeRect(startX, startY, width, height);
 	}
 	
 	
+	// on met à jour les données de la figure en continu.
 	var l = figures.length;
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+	}
+	// déplacement de figures. 			NOPE !!!! PROBLEME !!!
+	else if (outil == 'hand'){
+		moveX = mouseX - startX;
+		moveY = mouseY - startY;
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		figures[indice_selection][1] = old1 + moveX;
+		figures[indice_selection][2] = old2 + moveY;
+		figures[indice_selection][3] = old3 + moveX;
+		figures[indice_selection][4] = old4 + moveY;
+		console.log(figures[indice_selection][1], figures[indice_selection][2], figures[indice_selection][3],figures[indice_selection][4]) //pour le débuggage
 	}
 	
 	
@@ -380,7 +454,23 @@ function handleMouseMove(e) {
 	// console.log(stroke_color);
 
 	}
-	
+
+	// déplacement / redimmensionnement de figures.
+	// else if (outil == 'hand' || outil == 'size'){
+	// 	pass;
+	// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 function outil_gomme() {		// efface complètement le canvas
 	alert("Toutes les figures du canvas vont être effacées.");
@@ -396,22 +486,7 @@ function KeyPress(e) {			// CTRL + Z pour annuler la dernière construction
         figures.splice(-1);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         //Fonction pour afficher
-		for (var i = 0; i < figures.length; i++) {
-			if(figures[i][5] != '') {
-				if (figures[i][0] === 'rectangle') {
-					rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-				}
-				else if (figures[i][0] === 'triangle') {
-					triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-				}
-				else if (figures[i][0] === 'ellipse') {
-					ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-				}
-				// else {
-				// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-				// }
-			}
-		}
+		draw();
 	}
 }
 document.onkeydown = KeyPress;
@@ -472,7 +547,15 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 
 
 
-// tout ce qui suit appartient à la propriété intéléctuel de Adrien (dsl pour les fautes, il est tard)
+
+
+
+
+
+
+
+
+// tout ce qui suit est la propriété intellectuelle d'Adrien 
 // mes variables
 var save = document.querySelector("#save");
 var get_json = document.querySelector("#get_json");
