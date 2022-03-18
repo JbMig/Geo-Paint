@@ -15,11 +15,12 @@
         </div>
 
        <!-- boutons de création png et pdf -->
-        <div id="convertir">  
+        <form id="convertir" method="post">
+            <input id="convert" type="hidden" name="convert">
             <button id="convertirPng" class="btnConv">télécharger en png</button>
             <button id="convertirPdf" class="btnConv">télécharger en pdf</button>
-        </div>
-        <!-- formulaire Adrien -->
+        </form>
+        <!-- formulaire sauvegarde -->
         <div id="post_json" type="text">[]</div>
         <form id="form" method="post">
             <a href="#" class="cross">&times;</a>

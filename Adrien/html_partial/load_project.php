@@ -15,12 +15,13 @@
         </div>
         
         <!-- boutons de création png et pdf -->
-        <div id="convertir">  
-            <button id="convertirPng">télécharger en png</button>
-            <button id="convertirPdf">télécharger en pdf</button>
-        </div>
+        <form id="convertir" method="post">
+            <input type="hidden" name="convert">
+            <button id="convertirPng" class="btnConv">télécharger en png</button>
+            <button id="convertirPdf" class="btnConv">télécharger en pdf</button>
+        </form>
 
-        <!-- formulaire Adrien -->
+        <!-- formulaire sauvegarde -->
         <div id="post_json" type="text"><?= $_SESSION["projet"]["data"];?></div>
 
         <form id="form" method="post">
