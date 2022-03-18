@@ -15,11 +15,10 @@
         </div>
         
         <!-- boutons de création png et pdf -->
-        <form id="convertir" method="post">
-            <input type="hidden" name="convert">
+        <div id="convertir">
             <button id="convertirPng" class="btnConv">télécharger en png</button>
             <button id="convertirPdf" class="btnConv">télécharger en pdf</button>
-        </form>
+        </div>
 
         <!-- formulaire sauvegarde -->
         <div id="post_json" type="text"><?= $_SESSION["projet"]["data"];?></div>
@@ -37,7 +36,7 @@
     <div class="draw">
         <canvas class="bigSquare" id="canvas" width=850 height=1150></canvas>
         <div class="colorChoise">
-        <div class="colors">
+            <div class="colors">
 				<div class="colorSelection">
                     <p class="textColor">Couleur de remplissage :</p>
 					<input type="color" id="select_fill_color" value=#FFFFFF class="selectColor"></input>
@@ -54,6 +53,15 @@
 					<button id="confirm_stroke_thickness" class="confirmBtn">Confirmer</button>
 				</div>
 			</div>
+            <div class="font">
+                <input id="your_text" type="text">
+                <select class="font_select">
+                    <option value="roboto">Roboto</option>
+                    <option value="futura">Futura</option>
+                    <option value="baskerville">Baskerville</option>
+                </select>
+                <button id="confirm_text">Confirmer</button>
+            </div>
 		</div>
     </div>
 </header>
