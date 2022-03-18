@@ -36,18 +36,21 @@
     <div class="draw">
         <canvas class="bigSquare" id="canvas" width=850 height=1150></canvas>
         <div class="colorChoise">
-            <div class="colors">
-				<div>
-					<input type="color" id="select_fill_color" value=#FFFFFF>Couleur de remplissage</input>
-					<button id="confirm_fill_color">Confirmer</button>
+        <div class="colors">
+				<div class="colorSelection">
+                    <p class="textColor">Couleur de remplissage :</p>
+					<input type="color" id="select_fill_color" value=#FFFFFF class="selectColor"></input>
+					<button id="confirm_fill_color" class="confirmBtn">Confirmer</button>
 				</div>
-				<div>
-					<input type="color" id="select_stroke_color">Couleur de contour</input>
-					<button id="confirm_stroke_color">Confirmer</button>
+				<div class="colorSelection">
+                    <p class="textColor">Couleur de contour :</p>
+					<input type="color" id="select_stroke_color" class="selectColor"></input>
+					<button id="confirm_stroke_color" class="confirmBtn">Confirmer</button>
 				</div>
-				<div>
-					<input type="number" min="1" max="50" step="1" id="select_stroke_thickness">Épaisseur de contour</input>
-					<button id="confirm_stroke_thickness">Confirmer</button>
+				<div class="colorSelection">
+                    <p class="textColor">Épaisseur de contour :</p>
+					<input type="number" min="1" max="50" step="1" id="select_stroke_thickness" class="selectColor"></input>
+					<button id="confirm_stroke_thickness" class="confirmBtn">Confirmer</button>
 				</div>
 			</div>
 		</div>
