@@ -54,8 +54,6 @@ if ("POST" === $_SERVER["REQUEST_METHOD"]) {
         http_response_code(302);
         header('Location: /load_project'); //je recharge la page courante pour etre en get
         exit();
-    } else if (isset($_POST["convert"])) {
-        echo "convert";
     }
 }
 //j'appelle l'html de cette page

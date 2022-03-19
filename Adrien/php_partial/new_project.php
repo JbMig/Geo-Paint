@@ -58,21 +58,6 @@ if ("POST" === $_SERVER["REQUEST_METHOD"]) {
         http_response_code(302);
         header('Location: /load_project'); //je vais à la page projet chargé
         exit();
-    } else if (isset($_POST["convert"])) {
-        // require('fpdf/fpdf.php');
-        $img = filter_input(INPUT_POST, "convert");
-        print_r($img);
-        // $pdf = new FPDF();
-        // $pdf->AddPage();
-        // $pdf->Image($img,20,40,170,170);
-        // $pdf->Output();
-        // require('fpdf.php');
-
-        // $pdf = new FPDF();
-        // $pdf->AddPage();
-        // $pdf->SetFont('Arial','B',16);
-        // $pdf->Cell(40,10,'Hello World !');
-        // $pdf->Output();
     }
 }
 
