@@ -708,8 +708,17 @@ function handleMouseMove(e) {
 
 function outil_gomme() {
 	if (forme_selectionnee != 'None' || indice_selection != -2) {
-		// on supprime la figure sélectionnée.
-		figures.splice(indice_selection);
+		// on déplace les données de la figure sélectionnée à la fin de la liste figures.
+		const troisième_variable = forme_selectionnee;
+		var i = indice_selection
+		var l = figures.length;
+		while (i < l-1) {
+			figures[i] = figures[i+1];
+			i += 1;
+		}
+		figures[-1] = troisième_variable;
+		// on supprime la figure sélectionnée (qui est donc maintenant en dernière position).
+		figures.splice(-1);
 		// on réinitialise les données de sélection.
 		forme_selectionnee = 'None';
 		indice_selection = -2;
