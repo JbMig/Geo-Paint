@@ -317,23 +317,36 @@ function handleMouseDown(e) {
 
 	// déplacement de figures
 	else if (outil == 'hand'){
-		// je récupère la position de la souris :
+		// on récupère la position de la souris :
 		mouseX = parseInt(e.clientX - offsetX);
 		mouseY = parseInt(e.clientY - offsetY);
-		// je parcours la liste à l'envers car, si je suis dans la zone de sélection de plusieurs formes, je dois prendre celle du dessus, qui est la dernière tracée.
+		// on parcourt la liste à l'envers car, si on est dans la zone de sélection de plusieurs formes, on doit prendre celle du dessus, qui est la dernière tracée.
 		var l=figures.length;
 		var i = l-1;
 		while (i >= 0) {
-			// j'ai besoin de connaitre les coordonnées de la figure, pour comparer avec la position de la souris.
+			// on a besoin de connaitre les coordonnées de la figure, pour comparer avec la position de la souris.
 			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-			// je compare ces coordonnées à celles de la souris pour savoir si je suis dans la zone de sélection de la forme.
+			// on compare ces coordonnées à celles de la souris pour savoir si on est dans la zone de sélection de la forme.
 			if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
+				// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+				if (forme_selectionnee != 'None') {
+					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+					forme_selectionnee[7] -= 2;
+				}
 				forme_selectionnee = figures[i];
 				indice_selection = i;
-				i = -1; // pour sortir de la boucle
-				console.log(forme_selectionnee); // pour le débuggage
+				// il faut sortir de la boucle.
+				i = -1;
+				// on augmente l'épaisseur du contour de la forme sélectionnée pour montrer qu'elle est sélectionnée.
+				// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+				forme_selectionnee[7] += 2;
 			}
 			else {
+				// si une forme est sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+				if (forme_selectionnee != 'None') {
+					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+					forme_selectionnee[7] -= 2;
+				}
 				// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
 				forme_selectionnee = 'None';
 				indice_selection = -2;
@@ -609,15 +622,15 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 
 
 // function onclick(e) {
-// 	// je récupère la position de la souris
+// 	// on récupère la position de la souris
 // 	mouseX = parseInt(e.clientX - offsetX);
 //     mouseY = parseInt(e.clientY - offsetY);
 // 	var l=figures.length;
 // 	i = l;
-// 	while (i > 0){		// je parcours la liste à l'envers pour sélectionner la dernière figure construite.
+// 	while (i > 0){		// on parcourt la liste à l'envers pour sélectionner la dernière figure construite.
 // 		if (figures[i][0] < mouseX && mouseX < figures[i][2]){
 // 			console.log('figure ' + i + ' sélectionnée');
-// 			i = 0; 		// j'ai trouvé une figure donc je sors de la boucle.
+// 			i = 0; 		// une figure a été trouvée donc on sort de la boucle.
 // 		}
 // 		else {
 // 			i-=1;
