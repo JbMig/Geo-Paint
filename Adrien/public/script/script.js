@@ -1,119 +1,323 @@
 let outil = 'Aucun'
+
 function outil_rectangle() {
     if (outil === 'Aucun') {
 		outil = 'rectangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_rect").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'triangle') {
 		outil = 'rectangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_rect").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'ellipse') {
 		outil = 'rectangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_rect").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'hand') {
 		outil = 'rectangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_rect").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'size') {
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_rect").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 		outil = 'rectangle';
 	}
 	else {
 		outil = 'Aucun';
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
 	}
 	console.log(outil) // pour vérifier que ça fonctionne
 }
 document.getElementById("btn_rect").onclick = outil_rectangle;
 
+
+
+
 function outil_triangle() {
     if (outil === 'Aucun') {
 		outil = 'triangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_tri").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'rectangle') {
 		outil = 'triangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_tri").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'ellipse') {
 		outil = 'triangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_tri").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'hand') {
 		outil = 'triangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_tri").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'size') {
 		outil = 'triangle';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_tri").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else {
 		outil = 'Aucun';
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
 	}
 	console.log(outil) // pour vérifier que ça fonctionne
 }
 document.getElementById("btn_tri").onclick = outil_triangle;
 
 
+
+
 function outil_ellipse() {
     if (outil === 'Aucun') {
 		outil = 'ellipse';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_elli").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'triangle') {
 		outil = 'ellipse';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_elli").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'rectangle') {
 		outil = 'ellipse';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_elli").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'hand') {
 		outil = 'ellipse';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_elli").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'size') {
 		outil = 'ellipse';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_elli").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else {
 		outil = 'Aucun';
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
 	}
 	console.log(outil) // pour vérifier que ça fonctionne
 }
 document.getElementById("btn_elli").onclick = outil_ellipse;
 
-function outil_main() {			// sert à sélectionner une figure
+
+
+
+function outil_main() {			// nécessite de sélectionner une figure
     if (outil === 'Aucun') {
 		outil = 'hand';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_hand").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'triangle') {
 		outil = 'hand';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_hand").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'rectangle') {
 		outil = 'hand';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_hand").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'ellipse') {
 		outil = 'hand';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_hand").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else if (outil === 'size') {
 		outil = 'hand';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_hand").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	else {
 		outil = 'Aucun';
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
 	}
 	console.log(outil) // pour vérifier que ça fonctionne
 }
 document.getElementById("btn_hand").onclick = outil_main;
 
-function outil_deformer() {			// sert à sélectionner une figure
+
+
+
+function outil_deformer() {			// nécessite de sélectionner une figure
     if (outil === 'Aucun') {
 		outil = 'size';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_resize").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
 	}
 	else if (outil === 'triangle') {
 		outil = 'size';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_resize").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
 	}
 	else if (outil === 'rectangle') {
 		outil = 'size';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_resize").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
 	}
 	else if (outil === 'ellipse') {
 		outil = 'size';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_resize").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
 	}
 	else if (outil === 'hand') {
 		outil = 'size';
+		// changement visuel pour voir que l'outil est sélectionné
+		document.getElementById("btn_resize").style.border = "1px solid #000000";
+		// on réinitialise le style des autres outils au cas où ils auraient été sélectionnés avant.
+		document.getElementById("btn_rect").style.border = "0px solid #000000";
+		document.getElementById("btn_tri").style.border = "0px solid #000000";
+		document.getElementById("btn_elli").style.border = "0px solid #000000";
+		document.getElementById("btn_hand").style.border = "0px solid #000000";
 	}
 	else {
 		outil = 'Aucun';
+		document.getElementById("btn_resize").style.border = "0px solid #000000";
 	}
 	console.log(outil) // pour vérifier que ça fonctionne
 }
 document.getElementById("btn_resize").onclick = outil_deformer;
+
+
+
+
+
+
+
+
+
+
+
+
 
 // get references to the canvas and context
 var canvas = document.getElementById("canvas");
@@ -145,26 +349,57 @@ var startY;
 // var y1 = null
 // var y2 = null
 
-let figures = []
-var post_json = document.querySelector("#post_json").innerHTML;
-figures = JSON.parse(post_json);
 
-for (var i = 0; i < figures.length; i++) {
-	if(figures[i][5] != '') {
-		if (figures[i][0] === 'rectangle') {
-			rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+
+
+
+
+
+
+
+
+
+
+
+let figures = [];	// variable dans laquelle toutes les informations relatives aux différentes figures seront stockées.
+
+function draw() {
+	for (var i = 0; i < figures.length; i++) {
+		if(figures[i][5] != '') {
+			if (figures[i][0] === 'rectangle') {
+				rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			else if (figures[i][0] === 'triangle') {
+				triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			else if (figures[i][0] === 'ellipse') {
+				ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
+			}
+			// else {
+			// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+			// }
 		}
-		else if (figures[i][0] === 'triangle') {
-			triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-		}
-		else if (figures[i][0] === 'ellipse') {
-			ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-		}
-		// else {
-		// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-		// }
 	}
 }
+
+
+
+// Chargement de la sauvegarde éventuelle
+var post_json = document.querySelector("#post_json").innerHTML;
+figures = JSON.parse(post_json);
+draw();
+
+
+
+
+
+
+
+
+
+
+
+
 
 function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epaisseur_contour) {
 	ctx.fillStyle = couleur_remplissage;
@@ -225,9 +460,22 @@ function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, ep
 }
 
 
+
+
+
+
+
+
+
+
+
 let forme_selectionnee = 'None'
+let indice_selection = -2;
 
-
+let old1 = 0;
+let old2 = 0;
+let old3 = 0;
+let old4 = 0;
 
 function handleMouseDown(e) {
     // console.log('handleMouseDown');
@@ -245,27 +493,57 @@ function handleMouseDown(e) {
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures.push([outil,0,0,0,0,'','',0]);
 	}
-	else if (outil == 'hand' || outil == 'size'){
-		// je récupère la position de la souris :
+
+
+	// déplacement de figures
+	else if (outil == 'hand'){
+		// on récupère la position de la souris :
 		mouseX = parseInt(e.clientX - offsetX);
 		mouseY = parseInt(e.clientY - offsetY);
-		// je parcours la liste à l'envers car, si je suis dans la zone de sélection de plusieurs formes, je dois prendre celle du dessus, qui est la dernière tracée.
+		// on parcourt la liste à l'envers car, si on est dans la zone de sélection de plusieurs formes, on doit prendre celle du dessus, qui est la dernière tracée.
 		var l=figures.length;
 		var i = l-1;
 		while (i >= 0) {
-			// j'ai besoin de connaitre les coordonnées de la figure, pour comparer avec la position de la souris.
+			// on a besoin de connaitre les coordonnées de la figure, pour comparer avec la position de la souris.
 			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-			// je compare ces coordonnées à celles de la souris pour savoir si je suis dans la zone de sélection de la forme.
+			// on compare ces coordonnées à celles de la souris pour savoir si on est dans la zone de sélection de la forme.
 			if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
+				// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+				if (forme_selectionnee != 'None') {
+					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+					forme_selectionnee[7] -= 2;
+				}
 				forme_selectionnee = figures[i];
-				i = -1; // pour sortir de la boucle
-				console.log(forme_selectionnee); // pour le débuggage
+				indice_selection = i;
+				// il faut sortir de la boucle.
+				i = -1;
+				// on augmente l'épaisseur du contour de la forme sélectionnée pour montrer qu'elle est sélectionnée.
+				// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+				forme_selectionnee[7] += 2;
 			}
 			else {
+				// si une forme est sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+				if (forme_selectionnee != 'None') {
+					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+					forme_selectionnee[7] -= 2;
+				}
+				// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
+				forme_selectionnee = 'None';
+				indice_selection = -2;
 				i -= 1;
 			}
-		}	
+		}
+		if (forme_selectionnee != 'None') {
+			old1 = forme_selectionnee[1];
+			old2 = forme_selectionnee[2];
+			old3 = forme_selectionnee[3];
+			old4 = forme_selectionnee[4];
+		}
 	}
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
+	// }
 }
 
 
@@ -281,19 +559,36 @@ function handleMouseUp(e) {
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figures, pour effacer le carré de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'triangle') {
 		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figures, pour effacer le carré de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figures, pour effacer le carré de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
-	// else {
-	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+
+	// déplacement de figures
+
+	else if (outil == 'hand'){
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
+	}
+
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
 	// }
-	else if (outil == 'hand' || outil == 'size'){
-		forme_selectionnee = 'None';
-	}
 }
 
 
@@ -308,16 +603,37 @@ function handleMouseOut(e) {
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'triangle') {
 		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
-	// else {
-	// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
+
+	// déplacement de figures
+	else if (outil == 'hand'){
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
+	}
+	
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
 	// }
+
+
 }
 
 function handleMouseMove(e) {
@@ -325,67 +641,97 @@ function handleMouseMove(e) {
     // console.log(e);
     e.preventDefault();
     e.stopPropagation();
-    // if we're not dragging, just return
+    // met fin à la fonction si on relache le bouton de la souris sans avoir opéré de déplacement.
     if (!isDown) {
         return;
     }
 
-    // get the current mouse position
+    // on a besoin de connaitre en continu la position du curseur de la souris.
     mouseX = parseInt(e.clientX - offsetX);
     mouseY = parseInt(e.clientY - offsetY);
 
-    // Put your mousemove stuff here
-
-    // clear the canvas
-    
+    // on efface le canvas et on redessine les figure en permanence, pour afficher un aperçu de la figure que l'on trace, sans que des dizines de figures quasi-identiques n'apparaissent.
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	
-	for (var i = 0; i < figures.length; i++) {
-		if(figures[i][5] != '') {
-			if (figures[i][0] === 'rectangle') {
-				rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-			}
-			else if (figures[i][0] === 'triangle') {
-				triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-			}
-			else if (figures[i][0] === 'ellipse') {
-				ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-			}
-			// else {
-			// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-			// }
-		}
-	}
+	draw();
 	console.log(figures); // pour le débuggage
 
-    // calculate the rectangle width/height based
-    // on starting vs current mouse position
+    // on calcule la hauteur et la largeur du rectangle de tracé en fonction de la position du curseur par rapport à sa position de départ.
     var width = mouseX - startX;
     var height = mouseY - startY;
 
-    // draw a new rect from the start position 
-    // to the current mouse position
+    // on dessine un rectangle de tracé
     if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		ctx.strokeRect(startX, startY, width, height);
 	}
 	
 	
+	// on met à jour les données de la figure en continu.
 	var l = figures.length;
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures[l-1] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 	}
+
+	// déplacement de figures
+	else if (outil == 'hand'){
+		if (indice_selection != -2) {
+			moveX = mouseX - startX;
+			moveY = mouseY - startY;
+			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+			forme_selectionnee[1] = old1 + moveX;
+			forme_selectionnee[2] = old2 + moveY;
+			forme_selectionnee[3] = old3 + moveX;
+			forme_selectionnee[4] = old4 + moveY;
+			console.log(forme_selectionnee[1], forme_selectionnee[2], forme_selectionnee[3],forme_selectionnee[4]) //pour le débuggage
+		}
+	}
 	
-	
+	// redimmensionnement de figures
+	// else if (outil == 'size'){
+	// 	pass;
+	// }
+
 	// console.log(figures[l-1]); // pour le débuggage
 	// console.log(stroke_color);
 
-	}
-	
+}
 
-function outil_gomme() {		// efface complètement le canvas
-	alert("Toutes les figures du canvas vont être effacées.");
-	figures = [];
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+
+
+
+
+
+
+
+
+
+function outil_gomme() {
+	if (forme_selectionnee != 'None' || indice_selection != -2) {
+		// on déplace les données de la figure sélectionnée à la fin de la liste figures.
+		const troisième_variable = forme_selectionnee;
+		var i = indice_selection
+		var l = figures.length;
+		while (i < l-1) {
+			figures[i] = figures[i+1];
+			i += 1;
+		}
+		figures[-1] = troisième_variable;
+		// on supprime la figure sélectionnée (qui est donc maintenant en dernière position).
+		figures.splice(-1);
+		// on réinitialise les données de sélection.
+		forme_selectionnee = 'None';
+		indice_selection = -2;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	else {
+		// si aucune forme n'est sélectionnée, on efface complètement le canvas.
+		alert("Toutes les figures du canvas vont être effacées.");
+		figures = [];
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
 }
 document.getElementById("btn_erase").onclick = outil_gomme;
 
@@ -396,22 +742,7 @@ function KeyPress(e) {			// CTRL + Z pour annuler la dernière construction
         figures.splice(-1);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         //Fonction pour afficher
-		for (var i = 0; i < figures.length; i++) {
-			if(figures[i][5] != '') {
-				if (figures[i][0] === 'rectangle') {
-					rectangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-				}
-				else if (figures[i][0] === 'triangle') {
-					triangle_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-				}
-				else if (figures[i][0] === 'ellipse') {
-					ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
-				}
-				// else {
-				// 	là, ce sera les fonctions de déplacement / redimmensionnement de figures.
-				// }
-			}
-		}
+		draw();
 	}
 }
 document.onkeydown = KeyPress;
@@ -420,18 +751,46 @@ document.onkeydown = KeyPress;
 
 function changer_couleur_remplissage() {
 	let new_color = document.getElementById("select_fill_color").value;
+	if (indice_selection != -2) {
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		forme_selectionnee[6] = new_color;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	fill_color = new_color;
 }
 document.getElementById("confirm_fill_color").onclick = changer_couleur_remplissage;
 
 function changer_couleur_contour() {
 	let new_color = document.getElementById("select_stroke_color").value;
+	if (indice_selection != -2) {
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		forme_selectionnee[5] = new_color;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	stroke_color = new_color;
 }
+
 document.getElementById("confirm_stroke_color").onclick = changer_couleur_contour;
 
 function changer_epaisseur_contour() {
 	let number = document.getElementById("select_stroke_thickness").value;
+	if (indice_selection != -2) {
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		forme_selectionnee[7] = number;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	stroke_thickness = number;
 }
 document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_contour;
@@ -452,15 +811,15 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 
 
 // function onclick(e) {
-// 	// je récupère la position de la souris
+// 	// on récupère la position de la souris
 // 	mouseX = parseInt(e.clientX - offsetX);
 //     mouseY = parseInt(e.clientY - offsetY);
 // 	var l=figures.length;
 // 	i = l;
-// 	while (i > 0){		// je parcours la liste à l'envers pour sélectionner la dernière figure construite.
+// 	while (i > 0){		// on parcourt la liste à l'envers pour sélectionner la dernière figure construite.
 // 		if (figures[i][0] < mouseX && mouseX < figures[i][2]){
 // 			console.log('figure ' + i + ' sélectionnée');
-// 			i = 0; 		// j'ai trouvé une figure donc je sors de la boucle.
+// 			i = 0; 		// une figure a été trouvée donc on sort de la boucle.
 // 		}
 // 		else {
 // 			i-=1;
@@ -472,7 +831,15 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 
 
 
-// tout ce qui suit appartient à la propriété intéléctuel de Adrien (dsl pour les fautes, il est tard)
+
+
+
+
+
+
+
+
+// tout ce qui suit est la propriété intellectuelle d'Adrien 
 // mes variables
 var save = document.querySelector("#save");
 var get_json = document.querySelector("#get_json");

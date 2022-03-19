@@ -15,11 +15,11 @@
         </div>
 
        <!-- boutons de création png et pdf -->
-        <div id="convertir">  
+        <div id="convertir">
             <button id="convertirPng" class="btnConv">télécharger en png</button>
             <button id="convertirPdf" class="btnConv">télécharger en pdf</button>
-        </div>
-        <!-- formulaire Adrien -->
+</div>
+        <!-- formulaire sauvegarde -->
         <div id="post_json" type="text">[]</div>
         <form id="form" method="post">
             <a href="#" class="cross">&times;</a>
@@ -52,6 +52,15 @@
 					<button id="confirm_stroke_thickness" class="confirmBtn">Confirmer</button>
 				</div>
 			</div>
+            <div class="font">
+                <input id="your_text" type="text">
+                <select class="font_select">
+                    <option value="roboto">Roboto</option>
+                    <option value="futura">Futura</option>
+                    <option value="baskerville">Baskerville</option>
+                </select>
+                <button id="confirm_text">Confirmer</button>
+            </div>
         </div>
     </div>
 </header>
