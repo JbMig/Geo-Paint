@@ -333,7 +333,8 @@ function handleMouseDown(e) {
 				i = -1; // pour sortir de la boucle
 				console.log(forme_selectionnee); // pour le débuggage
 			}
-			else {	// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
+			else {
+				// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
 				forme_selectionnee = 'None';
 				indice_selection = -2;
 				i -= 1;
@@ -388,15 +389,7 @@ function handleMouseUp(e) {
 		// on efface le canvas et on redessine les figure, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
-		// on réinitialise les valeurs.
-		old1 = 0;
-		old2 = 0;
-		old3 = 0;
-		old4 = 0;
-		forme_selectionnee = 'None';
-		indice_selection = -2;
-		console.log(forme_selectionnee); // pour le débuggage
-		console.log(indice_selection); // pour le débuggage
+		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
 	}
 
 	// redimmensionnement de figures
@@ -439,15 +432,7 @@ function handleMouseOut(e) {
 		// on efface le canvas et on redessine les figure, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
-		// on réinitialise les valeurs.
-		old1 = 0;
-		old2 = 0;
-		old3 = 0;
-		old4 = 0;
-		forme_selectionnee = 'None';
-		indice_selection = -2;
-		console.log(forme_selectionnee); // pour le débuggage
-		console.log(indice_selection); // pour le débuggage
+		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
 	}
 	
 	// redimmensionnement de figures
@@ -551,18 +536,46 @@ document.onkeydown = KeyPress;
 
 function changer_couleur_remplissage() {
 	let new_color = document.getElementById("select_fill_color").value;
+	if (indice_selection != -2) {
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		figures[indice_selection][6] = new_color;
+		// on efface le canvas et on redessine les figure, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	fill_color = new_color;
 }
 document.getElementById("confirm_fill_color").onclick = changer_couleur_remplissage;
 
 function changer_couleur_contour() {
 	let new_color = document.getElementById("select_stroke_color").value;
+	if (indice_selection != -2) {
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		figures[indice_selection][5] = new_color;
+		// on efface le canvas et on redessine les figure, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	stroke_color = new_color;
 }
+
 document.getElementById("confirm_stroke_color").onclick = changer_couleur_contour;
 
 function changer_epaisseur_contour() {
 	let number = document.getElementById("select_stroke_thickness").value;
+	if (indice_selection != -2) {
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		figures[indice_selection][7] = number;
+		// on efface le canvas et on redessine les figure, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	stroke_thickness = number;
 }
 document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_contour;
