@@ -405,16 +405,21 @@ function handleMouseOut(e) {
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figure, pour effacer le rectangle de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'triangle') {
 		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figure, pour effacer le rectangle de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-	}
-	// fonctions de déplacement / redimmensionnement de figures.
-	else if (outil == 'hand' || outil == 'size'){
-		pass;
+		// on efface le canvas et on redessine les figure, pour effacer le rectangle de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 
 	// déplacement de figures
@@ -435,6 +440,8 @@ function handleMouseOut(e) {
 	// else if (outil == 'size'){
 	// 	pass;
 	// }
+
+
 }
 
 function handleMouseMove(e) {
