@@ -862,23 +862,8 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
   handleMouseOut(e);
 });
 
-
-// function onclick(e) {
-// 	// on récupère la position de la souris
-// 	mouseX = parseInt(e.clientX - offsetX);
-//     mouseY = parseInt(e.clientY - offsetY);
-// 	var l=figures.length;
-// 	i = l;
-// 	while (i > 0){		// on parcourt la liste à l'envers pour sélectionner la dernière figure construite.
-// 		if (figures[i][0] < mouseX && mouseX < figures[i][2]){
-// 			console.log('figure ' + i + ' sélectionnée');
-// 			i = 0; 		// une figure a été trouvée donc on sort de la boucle.
-// 		}
-// 		else {
-// 			i-=1;
-// 		}
-// 	}
-// } //ça ne marche pas...
+// ajouter un on click pr le texte
+// puis faire une fonction avec : ctx.fillText("texte","coord X","coord Y")
 
 
 
