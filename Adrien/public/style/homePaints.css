@@ -51,6 +51,8 @@ img {
 
 /* --------------------middle Tools----------- */
 .middleTools {
+  background-color: #fff;
+  position: fixed;
   margin: 25px 0px 0px 550px;
   border: 2px solid #080808;
   width: 200px;
@@ -111,10 +113,10 @@ img {
 #section_projet{
   width: 1300px;
   height: 100%;
-  background-color: #cecece;
+  background-color: #fff;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  margin:0px 0px 0px 50px;
+  margin:50px 0px 0px 50px;
   padding: 0px 0px 50px 60px;
 
 }
@@ -198,20 +200,19 @@ img {
   
 }
 .delete{
-  width: 20px;
+  width: 25px;
   height: 20px;
   background-color: #90BAAD;
   border: solid #000000;
   display: flex;
   align-items: center;
   margin-bottom:10px;
-  padding-right:0px;
   border-width: 0px;
   transition-property: width;
   transition-delay: 0.2s;
   transition-duration:0.5 ;
   transition: 1s;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 2px 0px 0px 2px;
 }
 .delete:hover{
   width:30px;
@@ -219,7 +220,7 @@ img {
 #dash{ 
   width: 15px;
   height: 15px;
-  padding: 2px;
+  padding-right: 15px;
 }
 
 #name{
@@ -467,7 +468,28 @@ button {
   padding-left: 5px;
   color: white;
 }
+.alert{
+  padding-left: 30px;
+  padding-top: 10px;
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  background-color: red;
 
+}
+.cross{
+  color: #000;
+}
+.cross:link{
+  text-decoration: none;
+  color: #000;
+}
+/* #figure_front{
+
+}
+#figure_back{
+  
+} */
 /* responsive */
 
 @media screen and (max-width:800px ) {
