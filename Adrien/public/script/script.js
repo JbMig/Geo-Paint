@@ -333,7 +333,9 @@ function handleMouseDown(e) {
 				i = -1; // pour sortir de la boucle
 				console.log(forme_selectionnee); // pour le débuggage
 			}
-			else {
+			else {	// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
+				forme_selectionnee = 'None';
+				indice_selection = -2;
 				i -= 1;
 			}
 		}
@@ -363,19 +365,19 @@ function handleMouseUp(e) {
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figure, pour effacer le carré de dessin.
+		// on efface le canvas et on redessine les figures, pour effacer le carré de dessin.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
 	else if (figures[l-1][0] === 'triangle') {
 		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figure, pour effacer le carré de dessin.
+		// on efface le canvas et on redessine les figures, pour effacer le carré de dessin.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figure, pour effacer le carré de dessin.
+		// on efface le canvas et on redessine les figures, pour effacer le carré de dessin.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
@@ -383,8 +385,10 @@ function handleMouseUp(e) {
 	// déplacement de figures
 
 	else if (outil == 'hand'){
+		// on efface le canvas et on redessine les figure, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
+		// on réinitialise les valeurs.
 		old1 = 0;
 		old2 = 0;
 		old3 = 0;
@@ -393,7 +397,6 @@ function handleMouseUp(e) {
 		indice_selection = -2;
 		console.log(forme_selectionnee); // pour le débuggage
 		console.log(indice_selection); // pour le débuggage
-
 	}
 
 	// redimmensionnement de figures
@@ -414,27 +417,29 @@ function handleMouseOut(e) {
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figure, pour effacer le rectangle de dessin.
+		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
 	else if (figures[l-1][0] === 'triangle') {
 		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figure, pour effacer le rectangle de dessin.
+		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figure, pour effacer le rectangle de dessin.
+		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
 
 	// déplacement de figures
 	else if (outil == 'hand'){
+		// on efface le canvas et on redessine les figure, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
+		// on réinitialise les valeurs.
 		old1 = 0;
 		old2 = 0;
 		old3 = 0;
@@ -490,14 +495,16 @@ function handleMouseMove(e) {
 
 	// déplacement de figures
 	else if (outil == 'hand'){
-		moveX = mouseX - startX;
-		moveY = mouseY - startY;
-		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
-		figures[indice_selection][1] = old1 + moveX;
-		figures[indice_selection][2] = old2 + moveY;
-		figures[indice_selection][3] = old3 + moveX;
-		figures[indice_selection][4] = old4 + moveY;
-		console.log(figures[indice_selection][1], figures[indice_selection][2], figures[indice_selection][3],figures[indice_selection][4]) //pour le débuggage
+		if (indice_selection != -2) {
+			moveX = mouseX - startX;
+			moveY = mouseY - startY;
+			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+			figures[indice_selection][1] = old1 + moveX;
+			figures[indice_selection][2] = old2 + moveY;
+			figures[indice_selection][3] = old3 + moveX;
+			figures[indice_selection][4] = old4 + moveY;
+			console.log(figures[indice_selection][1], figures[indice_selection][2], figures[indice_selection][3],figures[indice_selection][4]) //pour le débuggage
+		}
 	}
 	
 	// redimmensionnement de figures
@@ -508,8 +515,7 @@ function handleMouseMove(e) {
 	// console.log(figures[l-1]); // pour le débuggage
 	// console.log(stroke_color);
 
-	}
-
+}
 
 
 
