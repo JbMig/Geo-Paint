@@ -363,12 +363,21 @@ function handleMouseUp(e) {
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figure, pour effacer le carré de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'triangle') {
 		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figure, pour effacer le carré de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	else if (figures[l-1][0] === 'ellipse') {
 		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+		// on efface le canvas et on redessine les figure, pour effacer le carré de dessin.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 
 	// déplacement de figures
