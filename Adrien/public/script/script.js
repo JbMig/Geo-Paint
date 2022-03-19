@@ -341,10 +341,10 @@ function handleMouseDown(e) {
 			}
 		}
 		if (forme_selectionnee != 'None') {
-			old1 = figures[indice_selection][1];
-			old2 = figures[indice_selection][2];
-			old3 = figures[indice_selection][3];
-			old4 = figures[indice_selection][4];
+			old1 = forme_selectionnee[1];
+			old2 = forme_selectionnee[2];
+			old3 = forme_selectionnee[3];
+			old4 = forme_selectionnee[4];
 		}
 	}
 	// redimmensionnement de figures
@@ -386,7 +386,7 @@ function handleMouseUp(e) {
 	// déplacement de figures
 
 	else if (outil == 'hand'){
-		// on efface le canvas et on redessine les figure, pour valider les changements.
+		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
@@ -429,7 +429,7 @@ function handleMouseOut(e) {
 
 	// déplacement de figures
 	else if (outil == 'hand'){
-		// on efface le canvas et on redessine les figure, pour valider les changements.
+		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
@@ -484,11 +484,11 @@ function handleMouseMove(e) {
 			moveX = mouseX - startX;
 			moveY = mouseY - startY;
 			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
-			figures[indice_selection][1] = old1 + moveX;
-			figures[indice_selection][2] = old2 + moveY;
-			figures[indice_selection][3] = old3 + moveX;
-			figures[indice_selection][4] = old4 + moveY;
-			console.log(figures[indice_selection][1], figures[indice_selection][2], figures[indice_selection][3],figures[indice_selection][4]) //pour le débuggage
+			forme_selectionnee[1] = old1 + moveX;
+			forme_selectionnee[2] = old2 + moveY;
+			forme_selectionnee[3] = old3 + moveX;
+			forme_selectionnee[4] = old4 + moveY;
+			console.log(forme_selectionnee[1], forme_selectionnee[2], forme_selectionnee[3],forme_selectionnee[4]) //pour le débuggage
 		}
 	}
 	
@@ -513,10 +513,23 @@ function handleMouseMove(e) {
 
 
 
-function outil_gomme() {		// efface complètement le canvas
-	alert("Toutes les figures du canvas vont être effacées.");
-	figures = [];
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+function outil_gomme() {
+	if (indice_selection != -2) {
+		// on supprime la figure sélectionnée.
+		figures.splice(indice_selection);
+		// on réinitialise les données de sélection.
+		forme_selectionnee = 'None';
+		indice_selection = -2;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	else {
+		// si aucune forme n'est sélectionnée, on efface complètement le canvas.
+		alert("Toutes les figures du canvas vont être effacées.");
+		figures = [];
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
 }
 document.getElementById("btn_erase").onclick = outil_gomme;
 
@@ -539,8 +552,8 @@ function changer_couleur_remplissage() {
 	if (indice_selection != -2) {
 		// une forme est sélectionnée donc on change sa couleur.
 		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
-		figures[indice_selection][6] = new_color;
-		// on efface le canvas et on redessine les figure, pour valider les changements.
+		forme_selectionnee[6] = new_color;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
@@ -554,8 +567,8 @@ function changer_couleur_contour() {
 	if (indice_selection != -2) {
 		// une forme est sélectionnée donc on change sa couleur.
 		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
-		figures[indice_selection][5] = new_color;
-		// on efface le canvas et on redessine les figure, pour valider les changements.
+		forme_selectionnee[5] = new_color;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
@@ -570,8 +583,8 @@ function changer_epaisseur_contour() {
 	if (indice_selection != -2) {
 		// une forme est sélectionnée donc on change sa couleur.
 		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
-		figures[indice_selection][7] = number;
-		// on efface le canvas et on redessine les figure, pour valider les changements.
+		forme_selectionnee[7] = number;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
