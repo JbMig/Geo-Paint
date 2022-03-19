@@ -337,6 +337,12 @@ var canvasOffset = canvas.getBoundingClientRect();
 var offsetX = canvasOffset.left;
 var offsetY = canvasOffset.top;
 
+// function scroll() {			// Essai pour prendre en compte le scroll ds les coordonnées des figures
+// 	var canvasOffset = canvas.getBoundingClientRect();
+// 	var offsetX = canvasOffset.left;
+// 	var offsetY = canvasOffset.top;
+// }
+
 // this flag is true when the user is dragging the mouse
 var isDown = false;
 
@@ -478,6 +484,9 @@ let old3 = 0;
 let old4 = 0;
 
 function handleMouseDown(e) {
+	var canvasOffset = canvas.getBoundingClientRect();
+	var offsetX = canvasOffset.left;
+	var offsetY = canvasOffset.top;
     // console.log('handleMouseDown');
     // console.log(e);
     e.preventDefault();
@@ -579,6 +588,7 @@ function handleMouseUp(e) {
 	// déplacement de figures
 
 	else if (outil == 'hand'){
+		console.log(forme_selectionnee); // pour le débuggage
 		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
@@ -622,6 +632,7 @@ function handleMouseOut(e) {
 
 	// déplacement de figures
 	else if (outil == 'hand'){
+		console.log(forme_selectionnee); // pour le débuggage
 		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
@@ -637,6 +648,9 @@ function handleMouseOut(e) {
 }
 
 function handleMouseMove(e) {
+	var canvasOffset = canvas.getBoundingClientRect();
+	var offsetX = canvasOffset.left;
+	var offsetY = canvasOffset.top;
     // console.log('handleMouseMove');
     // console.log(e);
     e.preventDefault();
@@ -672,7 +686,8 @@ function handleMouseMove(e) {
 	}
 
 	// déplacement de figures
-	else if (outil == 'hand'){
+	else if (outil == 'hand'){	
+		console.log(forme_selectionnee); // pour le débuggage
 		if (indice_selection != -2) {
 			moveX = mouseX - startX;
 			moveY = mouseY - startY;
@@ -794,6 +809,44 @@ function changer_epaisseur_contour() {
 	stroke_thickness = number;
 }
 document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_contour;
+
+
+function avancer_figure() {
+	console.log(forme_selectionnee); // pour le débuggage
+	if (indice_selection != -2) {
+		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
+	}
+	else {
+		troisième_variable = figures[indice_selection-1];
+		figures[indice_selection-1] = forme_selectionnee;
+		forme_selectionnee = troisième_variable;
+		indice_selection -= 1;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+}
+document.getElementById("figure_front").onclick = avancer_figure;
+
+
+
+function reculer_figure() {
+	console.log(forme_selectionnee); // pour le débuggage	
+	if (indice_selection != -2) {
+		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
+	}
+	else {
+		troisième_variable = figures[indice_selection+1];
+		figures[indice_selection+1] = forme_selectionnee;
+		forme_selectionnee = troisième_variable;
+		indice_selection += 1;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+}
+document.getElementById("figure_back").onclick = reculer_figure;
+
 
 
 document.getElementById('canvas').addEventListener('mousedown', function(e) {
