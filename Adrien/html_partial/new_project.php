@@ -18,7 +18,7 @@
         <div id="convertir">
             <button id="convertirPng" class="btnConv">télécharger en png</button>
             <button id="convertirPdf" class="btnConv">télécharger en pdf</button>
-</div>
+		</div>
         <!-- formulaire sauvegarde -->
         <div id="post_json" type="text">[]</div>
         <form id="form" method="post">
@@ -50,6 +50,10 @@
                     <p class="textColor">Épaisseur de contour :</p>
 					<input type="number" min="1" max="50" step="1" id="select_stroke_thickness" class="selectColor"></input>
 					<button id="confirm_stroke_thickness" class="confirmBtn">Confirmer</button>
+				</div>
+				<div class="colorSelection">
+					<button id="figure_front" class="confirmBtn">Avancer la figure</button>
+					<button id="figure_back" class="confirmBtn">Reculer la figure</button>
 				</div>
 			</div>
             <div class="font">

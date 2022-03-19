@@ -52,6 +52,10 @@
 					<input type="number" min="1" max="50" step="1" id="select_stroke_thickness" class="selectColor"></input>
 					<button id="confirm_stroke_thickness" class="confirmBtn">Confirmer</button>
 				</div>
+				<div class="colorSelection">
+					<button id="figure_front" class="confirmBtn">Avancer la figure</button>
+					<button id="figure_back" class="confirmBtn">Reculer la figure</button>
+				</div>
 			</div>
             <div class="font">
                 <input id="your_text" type="text">
