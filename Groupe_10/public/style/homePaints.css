@@ -1,0 +1,500 @@
+@import url("https://fonts.googleapis.com/css2?family=Graduate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Graduate&family=Oswald:wght@300&display=swap");
+* {
+  font-family: "Oswald", sans-serif;
+  margin: 0px;
+  letter-spacing: 1px;
+}
+/*------------------------------------------------NAV-BAR----------------------------------------*/
+nav {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid#080808;
+  width: 100%;
+  height: 110px;
+}
+
+
+
+img {
+  width: 25px;
+  height: 25px;
+}
+.quit {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+/* ------------------TOOLS-------------- */
+.btnTools{
+  border-radius: 50%;
+  background-color: #fff;
+  text-align: center;
+  font-size: 30px;
+  border: 0px solid black;
+}
+
+.tools {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #080808;
+  margin: 25px 0px 0px 30px; 
+  padding: 0px;
+  display:flex;
+  width: 280px;
+  height: 50px;
+  border-radius: 50px;
+  box-shadow:  0px 4px 0px 0px #000000;
+  position: fixed;
+  background-color: #fff;
+}
+
+/* --------------------middle Tools----------- */
+.middleTools {
+  background-color: #fff;
+  position: fixed;
+  margin: 25px 0px 0px 550px;
+  border: 2px solid #080808;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  }
+.btnMiddleTools {
+  background-color: #fff;
+  text-align: center;
+  font-size: 30px;
+  border: 0px solid black;
+}
+/*-------------------QUIT---------------*/
+.quit {
+  margin: 25px 20px 0px 0px;
+  border: 0px solid #080808;
+  background-color: #90BAAD;
+  color: #fff;
+}
+/*-------------------Nom du fichier---------------*/
+.nameFile{
+  background-color: #fff;
+  color: #958FA3;
+  width: 175px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  border:  0px solid #080800;
+  margin-top: 90px;
+  border-radius: 50px;
+}
+#textNameFile{ 
+  font-size: 27px;
+}
+/*-------------------Draws----------------*/
+.draw{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.bigSquare{
+  background-color: #fff;
+  border: 1px solid #080808;
+  margin : 50px 50px 50px 50px
+}
+.colorChoice{
+  width: 250px;
+  height: 600px;
+  background-color: #fff;
+  border: 2px solid #000000;
+  margin-bottom: 200px;
+  margin-right: 30px;
+  box-shadow: 6px 8px 0px 0px #000000;
+}
+/*----------------------------- page de projet-------------------------*/ 
+
+#section_projet{
+  width: 1300px;
+  height: 100%;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  margin:50px 0px 0px 50px;
+  padding: 0px 0px 50px 60px;
+
+}
+/*-----------New Projet--------------*/
+#yourProjet{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: 4vh;
+  background: #958FA3;
+  color: #fff;
+  padding-bottom: 5px;
+
+}
+.newProjet{
+  width: 345px;
+  height: 236px;  
+  background-color: white;
+  border: 2px solid black;
+  margin-bottom: 100px;
+  border-radius : 4px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+#addProjet{
+  width: 70px;
+  height: 70px;
+  margin-bottom: 50px;
+}
+
+.newProjetBtn{
+  width: 345px;
+  height: 50px;
+  border-radius: 0px 0px 2px 2px;
+  background-color: #90BAAD;
+  border: 0px solid #000000;
+  font-size: 1em;
+  transition-property: height;
+  transition-delay: 0.2s;
+  transition-duration:0.5 ;
+  transition: 1s;
+}
+.newProjetBtn:hover{
+  height: 60px;
+
+}
+/*--------projet-------*/
+
+.projet{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  width: 345px;
+  height: 236px;  
+  background-color: white;
+  border: 2px solid black;
+  border-radius : 4px;
+  margin-bottom: 100px;
+}
+/* .logo{
+  position:relative;
+  width: ;
+} */
+
+.projetBtn{
+  width: 100%;
+  height: 50px;
+  border-radius: 0px 0px 2px 2px;
+  border: 0px solid #000000;
+  background-color: #958FA3;
+  transition-property: height;
+  transition-delay: 0.2s;
+  transition-duration:0.5 ;
+  transition: 1s;
+  display: flex;
+  justify-content: space-between;
+}
+.projetBtn:hover{
+  height: 60px;
+  
+}
+.delete{
+  width: 25px;
+  height: 20px;
+  background-color: #90BAAD;
+  border: solid #000000;
+  display: flex;
+  align-items: center;
+  margin-bottom:10px;
+  border-width: 0px;
+  transition-property: width;
+  transition-delay: 0.2s;
+  transition-duration:0.5 ;
+  transition: 1s;
+  border-radius: 2px 0px 0px 2px;
+}
+.delete:hover{
+  width:30px;
+}
+#dash{ 
+  width: 15px;
+  height: 15px;
+  padding-right: 15px;
+}
+
+#name{
+  font-size: 1rem;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+#date{
+  padding-top: 15px;
+  padding-left: 15px;
+}
+.bodyLogin{
+  background-color: #958FA3;
+  width:100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.loginMenu{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background:white;
+  position: absolute;
+  width: 500px;
+  height: 612px;
+  margin-top: 100px;
+}
+.welcome{
+  flex-direction: column;
+  background-color: #fff;
+  display: flex;
+  text-align: center;
+  width: 300px;
+  height: 200;
+  
+}
+#something{
+  color: #90BAAD;
+}
+.formInput{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  border: 0px solid#000000;
+  margin-top: 30px;
+  
+}
+#valider{
+  margin-left: 55px;
+  width: 100px;
+  height:40px ;
+  background-color: #958FA3;
+  border-radius: 3px;
+  border: 0px;
+
+}
+#email{
+  width: 200px;
+  height: 50px;
+  font-size: 1rem;
+  margin-bottom: 40px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  padding-left: 5px;
+}
+#password{
+  width: 200px;
+  height: 40px;
+  font-size: 1rem;
+  margin-bottom: 40px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  padding-left: 5px;
+}
+.passwords{
+  display: flex;
+  justify-content: center;
+  border: 0px solid #000;
+  background-color: #fff;
+  position: absolute;
+  width: 65px;
+  height: 20px;
+  margin-left:10px;
+  margin-top:30px;
+}
+.emails{
+  display: flex;
+  justify-content: center;
+  border: 0px solid #000;
+  background-color: #fff;
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  margin-left:10px;
+  margin-top:40px;
+}
+.signIn{
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  background-color: #90BAAD;
+  margin-top: -300px;
+  margin-right: 450px;
+  border:0px solid #000
+}
+.signIn::after{
+  content:"";
+  position: absolute;
+  width:100%;
+  height: 100%;
+  background-color: #577068;
+  z-index: -3;
+  left: 0;
+  top:0;
+  transform: rotate(30deg);
+  transform-origin: bottom left;
+}
+#inscrire:visited{
+  text-decoration: none;
+  color: #000;
+}
+#inscrive:active{
+  text-decoration: none;
+  color: #000;
+}
+#inscrire:link{
+  text-decoration: none;
+  color: #000;
+  font-weight: 800;
+  font-size: 24px;
+}
+.formInput .emailsign{
+  margin-left:40px ;
+  margin-bottom: 10px;
+} 
+.formInput .passwordssign{
+  margin-left:35px ;
+  margin-bottom: 10px;
+} 
+.green{
+  color: #90BAAD;
+}
+/* code adrien */
+button {
+  cursor: pointer;
+}
+#form {
+  visibility: hidden;
+}
+#post_json {
+  visibility: hidden;
+}
+
+/* ---------------------Hidden pop-up---------------- */
+
+#form{
+  position: relative;
+  width: 250px;
+  height:150px ;
+  background-color: #90BAAD;
+  border-radius: 3px;
+  top: 300px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 400px;
+}
+#save{
+  position: relative;
+  width: 100px;
+  height:40px ;
+  background-color: #958FA3;
+  border-radius: 3px;
+  border: 0px;
+  margin-top: 20px;
+}
+
+/* Telechargement pdf ou png  */
+
+#convertir{
+  position:absolute;
+  margin: 30px 0px 0px 800px;
+  
+}
+.btnConv{
+  background: #958FA3;
+  border: 0px solid #000;
+  border-radius: 3px;
+  width: 100px;
+  height: 40px;
+}
+
+/* choix des couleurs  */
+
+
+.colors{
+  align-content: center;
+  width: 200;
+  height: 230px;
+  border: 0px solid #000;
+  padding-left: 20px;
+
+}
+
+.confirmBtn{
+  border: 0px solid #000;
+  border-radius: 3px;
+  background: #958FA3;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.colorSelection{
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.textColor{
+  margin-left: 1px;
+  margin-bottom: 4px;
+  font-size: 20px;
+}
+.selectColor{
+  border:0px solid #cecece;
+  border-radius:1px ;
+  background-color: #fff;
+}
+#select_stroke_thickness{
+  border: 1px solid #cecece;
+}
+#png{
+  display: flex;
+  justify-content: center;
+  padding-left: 8px;
+  margin-top: 5px;
+  border-radius: 3px;
+  font-size: 28px;
+  height: 40px;
+  width: 197px;
+  background-color: #958FA3;
+  text-decoration: none;
+  color: white;
+}
+.alert{
+  padding-right:30px;
+  padding-left: 30px;
+  padding-top: 10px;
+  margin-top: 20px;
+  height: 40px;
+  background-color: red;
+
+}
+.cross{
+  color: #000;
+}
+.cross:link{
+  text-decoration: none;
+  color: #000;
+}
+
+.font{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 150px;
+  height: 120px;
+  margin-top:110px;
+  margin-left: 20px;
+
+
+}
+#confirm_text{
+  margin-top: 5px;
+}
