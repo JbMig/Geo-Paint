@@ -1055,14 +1055,12 @@ document.getElementById("confirm_fill_color").onclick = changer_couleur_rempliss
 function changer_couleur_contour() {
 	let new_color = document.getElementById("select_stroke_color").value;
 	if (indice_selection != -2) {
-		if (forme_selectionnee[0] != 'text') { // la coordonnée 6 de la zone de texte n'est pas une couleur et n'est pas modifiable.
-			// une forme est sélectionnée donc on change sa couleur.
-			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
-			forme_selectionnee[5] = new_color;
-			// on efface le canvas et on redessine les figures, pour valider les changements.
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			draw();
-		}
+		// une forme est sélectionnée donc on change sa couleur.
+		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
+		forme_selectionnee[5] = new_color;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
 	}
 	// les cases à droite restent dans la couleur choisie donc on garde cette couleur pour les prochaines figures.
 	stroke_color = new_color;
@@ -1087,15 +1085,19 @@ document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_
 
 
 function avancer_figure() {
+	var l=figures.length;
 	console.log(forme_selectionnee); // pour le débuggage
 	if (indice_selection == -2) {
 		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
 	}
+	else if (indice_selection >= l-1) {
+		alert("La figure est déjà au premier-plan.")
+	}
 	else {
-		troisième_variable = figures[indice_selection-1];
-		figures[indice_selection-1] = forme_selectionnee;
-		forme_selectionnee = troisième_variable;
-		indice_selection -= 1;
+		troisième_variable = figures[indice_selection+1];
+		figures[indice_selection+1] = forme_selectionnee;
+		figures[indice_selection] = troisième_variable;
+		indice_selection += 1;
 		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
@@ -1110,11 +1112,14 @@ function reculer_figure() {
 	if (indice_selection == -2) {
 		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
 	}
+	else if (indice_selection <= 0) {
+		alert("La figure est déjà à l'arrière-plan.")
+	}
 	else {
-		troisième_variable = figures[indice_selection+1];
-		figures[indice_selection+1] = forme_selectionnee;
-		forme_selectionnee = troisième_variable;
-		indice_selection += 1;
+		troisième_variable = figures[indice_selection-1];
+		figures[indice_selection-1] = forme_selectionnee;
+		figures[indice_selection] = troisième_variable;
+		indice_selection -= 1;
 		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
