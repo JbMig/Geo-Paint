@@ -647,7 +647,7 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 		// ctx.fillText(texte, X, Y, largeur_max);
 
 		var pixel = font_size
-    	ctx.font = pixel + 'px serif';
+    	ctx.font = pixel + 'px cursive';
     	ctx.fillText(texte, X, Y, largeur_max);
 	}
 }
