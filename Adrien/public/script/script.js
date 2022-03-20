@@ -644,10 +644,6 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 		alert('Veuillez entrer un texte dans la zone de droite et réessayer.')
 	}
 	else {
-		// ctx.fillStyle = couleur_texte;
-		// ctx.font = taille_police . type_police;
-		// // console.log(ctx.font);
-		// ctx.fillText(texte, X, Y, largeur_max);
 		ctx.fillStyle = couleur_texte;
 		var pixel = taille_police
 		if (type_police == 'serif') {
@@ -658,9 +654,6 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 		}
 		else if (type_police == 'cursive') {
 			ctx.font = pixel + 'px cursive';
-		}
-		else {
-			alert('pbm de type de police ligne 663')
 		}
     	ctx.fillText(texte, X, Y, largeur_max);
 	}
@@ -736,34 +729,70 @@ function handleMouseDown(e) {
 		var i = l-1;
 		while (i >= 0) {
 			// on a besoin de connaitre les coordonnées de la figure, pour comparer avec la position de la souris.
-			// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-			// on compare ces coordonnées à celles de la souris pour savoir si on est dans la zone de sélection de la forme.
-			if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
-				// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.) Dans le cas des zones de texte, c'est la police qui est modifiée.
-				if (forme_selectionnee != 'None') {
-					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-					forme_selectionnee[7] -= 2;
-				}
-				forme_selectionnee = figures[i];
-				indice_selection = i;
-				// il faut sortir de la boucle.
-				i = -1;
-				// on augmente l'épaisseur du contour (ou la taille de police) de la forme sélectionnée pour montrer qu'elle est sélectionnée.
+			// les coordonnées sont traîtées différemment pour les formes classiques et pour les zones de texte donc j'ai deux cas :
+			if (figures[i][0] == 'rectangle' || figures[i][0] == 'triangle' || figures[i][0] == 'ellipse'){		
 				// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-				forme_selectionnee[7] += 2;
-			}
-			else {
-				// si une forme est sélectionnée, on remet l'épaisseur de son contour (ou la taille de police) à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
-				if (forme_selectionnee != 'None') {
+				// on compare ces coordonnées à celles de la souris pour savoir si on est dans la zone de sélection de la forme.
+				if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
+					// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.) Dans le cas des zones de texte, c'est la police qui est modifiée.
+					if (forme_selectionnee != 'None') {
+						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+						forme_selectionnee[7] -= 2;
+					}
+					forme_selectionnee = figures[i];
+					indice_selection = i;
+					// il faut sortir de la boucle.
+					i = -1;
+					// on augmente l'épaisseur du contour (ou la taille de police) de la forme sélectionnée pour montrer qu'elle est sélectionnée.
 					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-					forme_selectionnee[7] -= 2;
+					forme_selectionnee[7] += 2;
 				}
-				// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
-				forme_selectionnee = 'None';
-				indice_selection = -2;
-				i -= 1;
+				else {
+					// si une forme est sélectionnée, on remet l'épaisseur de son contour (ou la taille de police) à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+					if (forme_selectionnee != 'None') {
+						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+						forme_selectionnee[7] -= 2;
+					}
+					// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
+					forme_selectionnee = 'None';
+					indice_selection = -2;
+					i -= 1;
+				}
 			}
-		}
+			else if (figures[i][0] == 'text'){		
+				// je calcule la largeur de la zone de texte
+				const nombre_caracteres = figures[i][3].length;
+				const taille_caracteres = figures[i][7];
+				const largeur = nombre_caracteres * taille_caracteres;
+				// pour la hauteur, je considère qu'on n'écrit que sur une ligne
+				const hauteur = taille_caracteres;
+				if ((figures[i][1] < mouseX && mouseX < figures[i][1] + largeur) && (figures[i][2] > mouseY && mouseY > figures[i][2] - hauteur)) {
+					// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.) Dans le cas des zones de texte, c'est la police qui est modifiée.
+					if (forme_selectionnee != 'None') {
+						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+						forme_selectionnee[7] -= 2;
+					}
+					forme_selectionnee = figures[i];
+					indice_selection = i;
+					// il faut sortir de la boucle.
+					i = -1;
+					// on augmente l'épaisseur du contour (ou la taille de police) de la forme sélectionnée pour montrer qu'elle est sélectionnée.
+					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+					forme_selectionnee[7] += 2;
+				}
+				else {
+					// si une forme est sélectionnée, on remet l'épaisseur de son contour (ou la taille de police) à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+					if (forme_selectionnee != 'None') {
+						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
+						forme_selectionnee[7] -= 2;
+					}
+					// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
+					forme_selectionnee = 'None';
+					indice_selection = -2;
+					i -= 1;
+				}
+
+			}
 		if (forme_selectionnee != 'None') {
 			old1 = forme_selectionnee[1];
 			old2 = forme_selectionnee[2];
@@ -771,11 +800,13 @@ function handleMouseDown(e) {
 			old4 = forme_selectionnee[4];
 		}
 	}
-	// redimmensionnement de figures
+	// // redimmensionnement de figures
 	// else if (outil == 'size'){
-	// 	pass;
+	// 	pass; // cette fonction n'est pas encore disponible
 	// }
+	}
 }
+
 
 
 function handleMouseUp(e) {
@@ -806,12 +837,6 @@ function handleMouseUp(e) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw();
 	}
-	// else if (figures[l-1][0] === 'text') {
-	// 	zone_texte_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-	// 	// on efface le canvas et on redessine les figures, par sécurité.
-	// 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	// 	draw();
-	// }
 
 	// déplacement de figures
 
@@ -823,9 +848,9 @@ function handleMouseUp(e) {
 		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
 	}
 
-	// redimmensionnement de figures
+	// // redimmensionnement de figures
 	// else if (outil == 'size'){
-	// 	pass;
+	// 	pass; // cette fonction n'est pas encore disponible
 	// }
 }
 
@@ -866,17 +891,10 @@ function handleMouseOut(e) {
 		draw();
 		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
 	}
-
-	// else if (figures[l-1][0] === 'text') {
-	// 	zone_texte_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-	// 	// on efface le canvas et on redessine les figures, par sécurité.
-	// 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	// 	draw();
-	// }
 	
-	// redimmensionnement de figures
+	// // redimmensionnement de figures
 	// else if (outil == 'size'){
-	// 	pass;
+	// 	pass; // cette fonction n'est pas encore disponible
 	// }
 
 
@@ -946,37 +964,15 @@ function handleMouseMove(e) {
 	}
 	
 	
-	// redimmensionnement de figures
+	// // redimmensionnement de figures
 	// else if (outil == 'size'){
-	// 	pass;
+	// 	pass; // cette fonction n'est pas encore disponible
 	// }
 
-	// console.log(figures[l-1]); // pour le débuggage
-	// console.log(stroke_color);
 
 }
 
-// function handleclick(e) {
-// 	console.log("fonction handleclick")
-// 	if (outil == 'text') {
-// 		// on récupère le texte du formulaire
-// 		texte_formulaire = document.getElementById("your_text").value;
-// 		// initialisation du curseur de la souris
-// 		var canvasOffset = canvas.getBoundingClientRect();
-// 		var offsetX = canvasOffset.left;
-// 		var offsetY = canvasOffset.top;
-// 		// on a besoin de connaitre la position du curseur de la souris.
-// 		mouseX = parseInt(e.clientX - offsetX);
-// 		mouseY = parseInt(e.clientY - offsetY);
-// 		max_width = canvas.width - mouseX
-// 		text_color = fill_color;
-// 		// sauvegarde pour les zones de texte :
-// 		figures.push([outil, mouseX, mouseY, texte_formulaire, max_width, font_type, text_color, font_size])
-// 		// on efface le canvas et on redessine les figures, pour valider la création de la zone.
-// 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-// 		draw();
-// 	}
-// }
+
 
 
 
@@ -1136,9 +1132,7 @@ document.getElementById('canvas').addEventListener('mouseup', function(e) {
 document.getElementById('canvas').addEventListener('mouseout', function(e) {
   	handleMouseOut(e);
 });
-// document.getElementById('canvas').addEventListener('onclick', function(e) {
-// 	handleclick(e);
-// });
+
 
 
 
