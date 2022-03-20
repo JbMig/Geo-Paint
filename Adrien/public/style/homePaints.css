@@ -100,8 +100,8 @@ img {
   margin : 50px 50px 50px 50px
 }
 .colorChoise{
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 500px;
   background-color: #fff;
   border: 2px solid #000000;
   margin-bottom: 200px;
@@ -383,7 +383,7 @@ button {
   background-color: #90BAAD;
   border-radius: 3px;
   top: 300px;
-  right: 400px;
+  right: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -404,9 +404,9 @@ button {
 /* Telechargement pdf ou png  */
 
 #convertir{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position:absolute;
+  margin: 30px 0px 0px 800px;
+  
 }
 .btnConv{
   background: #958FA3;
@@ -414,7 +414,6 @@ button {
   border-radius: 3px;
   width: 100px;
   height: 40px;
-  margin-left: 5px;
 }
 
 /* choix des couleurs  */
@@ -425,7 +424,7 @@ button {
   width: 200;
   height: 230px;
   border: 0px solid #000;
-  padding-left: 50px;
+  padding-left: 20px;
 
 }
 
@@ -458,14 +457,14 @@ button {
 #png{
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-left: 8px;
+  margin-top: 5px;
+  border-radius: 3px;
   font-size: 28px;
   height: 40px;
-  width: 190px;
+  width: 197px;
   background-color: #958FA3;
-  position: absolute;
   text-decoration: none;
-  padding-left: 5px;
   color: white;
 }
 .alert{
@@ -484,6 +483,18 @@ button {
   text-decoration: none;
   color: #000;
 }
+
+.font{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 150px;
+  height: 120px;
+  margin-top:90px;
+  margin-left: 20px;
+
+
+}
 /* #figure_front{
 
 }
@@ -492,7 +503,7 @@ button {
 } */
 /* responsive */
 
-@media screen and (max-width:800px ) {
+/* @media screen and (max-width:800px ) {
   .loginMenu{
     width: 50%;
   }
@@ -509,4 +520,4 @@ button {
     width: 80%;
     margin-left: 10%;
   }
-}
+} */

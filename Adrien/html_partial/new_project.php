@@ -57,13 +57,14 @@
 				</div>
 			</div>
             <div class="font">
-                <input id="your_text" type="text">
+                <p>Rentrer votre text :</p>
+                <input id="your_text" type="text" >
                 <select class="font_select">
                     <option value="roboto">Roboto</option>
                     <option value="futura">Futura</option>
                     <option value="baskerville">Baskerville</option>
                 </select>
-                <button id="confirm_text">Confirmer</button>
+                <button id="confirm_text" class="confirmBtn">Confirmer</button>
             </div>
         </div>
     </div>

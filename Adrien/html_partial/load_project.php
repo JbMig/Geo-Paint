@@ -64,7 +64,7 @@
                     <option value="futura">Futura</option>
                     <option value="baskerville">Baskerville</option>
                 </select>
-                <button id="confirm_text">Confirmer</button>
+                <button id="confirm_text" class="confirmBtn">Confirmer</button>
             </div>
 		</div>
     </div>
