@@ -234,7 +234,7 @@ document.getElementById("btn_elli").onclick = outil_ellipse;
 
 
 
-function outil_main() {			// nécessite de sélectionner une figure
+function outil_main() {
     if (outil === 'Aucun') {
 		outil = 'hand';
 		// changement visuel pour voir que l'outil est sélectionné
@@ -312,7 +312,7 @@ document.getElementById("btn_hand").onclick = outil_main;
 
 
 
-function outil_deformer() {			// nécessite de sélectionner une figure
+function outil_deformer() {
     if (outil === 'Aucun') {
 		outil = 'size';
 		// changement visuel pour voir que l'outil est sélectionné
@@ -395,7 +395,7 @@ document.getElementById("btn_resize").onclick = outil_deformer;
 
 
 
-function outil_texte() {			// nécessite de sélectionner une figure
+function outil_texte() {
     if (outil === 'Aucun') {
 		outil = 'text';
 		// changement visuel pour voir que l'outil est sélectionné
@@ -705,9 +705,8 @@ function handleMouseDown(e) {
 		else {
 			max_width = canvas.width - startX;
 			text_color = stroke_color;
-			var font_size = document.getElementById("select_font_size").value ;
-			var font_type = document.getElementById("select_font_type").value ;
-			console.log(font_type);
+			font_size = document.getElementById("select_font_size").value ;
+			font_type = document.getElementById("select_font_type").value ;
 			// sauvegarde pour les zones de texte :
 			figures.push([outil, startX, startY, texte_formulaire, max_width, text_color, font_type, font_size]);
 			console.log(figures);
@@ -1055,7 +1054,7 @@ document.getElementById("confirm_fill_color").onclick = changer_couleur_rempliss
 function changer_couleur_contour() {
 	let new_color = document.getElementById("select_stroke_color").value;
 	if (indice_selection != -2) {
-		// une forme est sélectionnée donc on change sa couleur.
+		// une forme est sélectionnée donc on change sa couleur. Pour les zones de texte, cela change la couleur de police.
 		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
 		forme_selectionnee[5] = new_color;
 		// on efface le canvas et on redessine les figures, pour valider les changements.
@@ -1126,6 +1125,30 @@ function reculer_figure() {
 	}
 }
 document.getElementById("figure_back").onclick = reculer_figure;
+
+// function changer_zone_texte() {
+// 	let new_font_size = document.getElementById("select_font_size").value;
+// 	let new_font_type = document.getElementById("select_font_type").value;
+// 	let new_text = document.getElementById("your_text").value;
+// 	if (indice_selection != -2 && forme_selectionnee[0] == 'text') {
+// 		// une forme est sélectionnée donc on lui applique les changements effectués.
+// 		// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, couleur_texte, type_police, taille_police]
+// 		forme_selectionnee[3] = new_text;
+// 		forme_selectionnee[6] = new_font_type;
+// 		forme_selectionnee[7] = new_font_size;
+// 		// on efface le canvas et on redessine les figures, pour valider les changements.
+// 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+// 		draw();
+// 	}
+// 	// on conserve ces changements pour la prochaine zone de texte.
+// 	font_size = document.getElementById("select_font_size").value;
+// 	font_type = document.getElementById("select_font_type").value;
+// }
+
+// document.getElementById("confirm_text").onclick = changer_couleur_contour;
+
+
+
 
 
 
