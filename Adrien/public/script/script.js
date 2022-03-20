@@ -323,6 +323,7 @@ function outil_deformer() {			// nécessite de sélectionner une figure
 		document.getElementById("btn_elli").style.border = "0px solid #000000";
 		document.getElementById("btn_hand").style.border = "0px solid #000000";
 		document.getElementById("btn_txt").style.border = "0px solid #000000";
+		alert('Fonction à venir.');
 	}
 	else if (outil === 'triangle') {
 		outil = 'size';
@@ -334,6 +335,7 @@ function outil_deformer() {			// nécessite de sélectionner une figure
 		document.getElementById("btn_elli").style.border = "0px solid #000000";
 		document.getElementById("btn_hand").style.border = "0px solid #000000";
 		document.getElementById("btn_txt").style.border = "0px solid #000000";
+		alert('Fonction à venir.');
 	}
 	else if (outil === 'rectangle') {
 		outil = 'size';
@@ -345,6 +347,7 @@ function outil_deformer() {			// nécessite de sélectionner une figure
 		document.getElementById("btn_elli").style.border = "0px solid #000000";
 		document.getElementById("btn_hand").style.border = "0px solid #000000";
 		document.getElementById("btn_txt").style.border = "0px solid #000000";
+		alert('Fonction à venir.');
 	}
 	else if (outil === 'ellipse') {
 		outil = 'size';
@@ -356,6 +359,7 @@ function outil_deformer() {			// nécessite de sélectionner une figure
 		document.getElementById("btn_elli").style.border = "0px solid #000000";
 		document.getElementById("btn_hand").style.border = "0px solid #000000";
 		document.getElementById("btn_txt").style.border = "0px solid #000000";
+		alert('Fonction à venir.');
 	}
 	else if (outil === 'hand') {
 		outil = 'size';
@@ -367,6 +371,7 @@ function outil_deformer() {			// nécessite de sélectionner une figure
 		document.getElementById("btn_elli").style.border = "0px solid #000000";
 		document.getElementById("btn_hand").style.border = "0px solid #000000";
 		document.getElementById("btn_txt").style.border = "0px solid #000000";
+		alert('Fonction à venir.');
 	}
 	else if (outil === 'text') {
 		outil = 'size';
@@ -378,6 +383,7 @@ function outil_deformer() {			// nécessite de sélectionner une figure
 		document.getElementById("btn_elli").style.border = "0px solid #000000";
 		document.getElementById("btn_hand").style.border = "0px solid #000000";
 		document.getElementById("btn_txt").style.border = "0px solid #000000";
+		alert('Fonction à venir.');
 	}
 	else {
 		outil = 'Aucun';
@@ -489,12 +495,9 @@ var stroke_color = 'rgb(0, 0, 0)';				// par défaut. Il faudra changer ça plus
 var fill_color = 'rgb(255, 255, 255)';			// idem
 var text_color = stroke_color;					// idem
 var stroke_thickness = 2;						// idem
-var font_size = "48";							// la taille de police ne change pas. >_<
-var font_type = "";								// la police ne change pas --> si on ne la met pas, voir ce qu'on peut mettre à sa place dans les données de sauvegarde
+var font_size = document.getElementById("select_font_size").value ;
+var font_type = document.getElementById("select_font_type").value ;
 
-// var pixel = document.getElementById("pixel")
-//     ctx.font = pixel + 'px serif';
-//     ctx.fillText(document.getElementById("text").value,event.clientX,event.clientY);
 
 // style de canvas
 ctx.strokeStyle = stroke_color;
@@ -645,9 +648,20 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 		// ctx.font = taille_police . type_police;
 		// // console.log(ctx.font);
 		// ctx.fillText(texte, X, Y, largeur_max);
-
-		var pixel = font_size
-    	ctx.font = pixel + 'px cursive';
+		ctx.fillStyle = couleur_texte;
+		var pixel = taille_police
+		if (type_police == 'serif') {
+			ctx.font = pixel + 'px serif';
+		}
+		else if (type_police == 'sans-serif') {
+			ctx.font = pixel + 'px sans-serif';
+		}
+		else if (type_police == 'cursive') {
+			ctx.font = pixel + 'px cursive';
+		}
+		else {
+			alert('pbm de type de police ligne 663')
+		}
     	ctx.fillText(texte, X, Y, largeur_max);
 	}
 }
@@ -698,6 +712,9 @@ function handleMouseDown(e) {
 		else {
 			max_width = canvas.width - startX;
 			text_color = stroke_color;
+			var font_size = document.getElementById("select_font_size").value ;
+			var font_type = document.getElementById("select_font_type").value ;
+			console.log(font_type);
 			// sauvegarde pour les zones de texte :
 			figures.push([outil, startX, startY, texte_formulaire, max_width, text_color, font_type, font_size]);
 			console.log(figures);
@@ -1012,30 +1029,9 @@ function KeyPress(e) {			// CTRL + Z pour annuler la dernière construction
 }
 document.onkeydown = KeyPress;
 
-// console.log(document.getElementById("select_fill_color"));
 
 
-// function zone_texte_souris() {
-// 	// mode de sauvegarde : figures[l-1] = [outil, startX, startY, text, max_width, text_color, font_size, font_type]; 
-// 	if (outil = 'text') {
-// 		texte = document.getElementById("your_text").value;
-// 		// initialisation du curseur de la souris
-// 		var canvasOffset = canvas.getBoundingClientRect();
-// 		var offsetX = canvasOffset.left;
-// 		var offsetY = canvasOffset.top;
-// 		// on a besoin de connaitre la position du curseur de la souris.
-// 		mouseX = parseInt(e.clientX - offsetX);
-// 		mouseY = parseInt(e.clientY - offsetY);
-// 		text_color = fill_color;
-// 		ctx.fillStyle = text_color;
-// 		ctx.font = font_size . font_type;
-// 		max_width = canvas.width - mouseX
-// 		ctx.fillText(texte, mouseX, mouseY, max_width);
-// 	}
-// 	else {
-// 		return
-// 	}
-// }
+
 
 
 
@@ -1092,7 +1088,7 @@ document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_
 
 function avancer_figure() {
 	console.log(forme_selectionnee); // pour le débuggage
-	if (indice_selection != -2) {
+	if (indice_selection == -2) {
 		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
 	}
 	else {
@@ -1111,7 +1107,7 @@ document.getElementById("figure_front").onclick = avancer_figure;
 
 function reculer_figure() {
 	console.log(forme_selectionnee); // pour le débuggage	
-	if (indice_selection != -2) {
+	if (indice_selection == -2) {
 		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
 	}
 	else {
