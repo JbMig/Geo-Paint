@@ -34,7 +34,7 @@
     </nav>
     <div class="draw">
         <canvas class="bigSquare" id="canvas" width=850 height=1150></canvas>
-        <div class="colorChoise">
+        <div class="colorChoice">
 			<div class="colors">
 				<div class="colorSelection">
                     <p class="textColor">Couleur de remplissage :</p>
