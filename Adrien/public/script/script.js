@@ -495,7 +495,13 @@ var stroke_color = 'rgb(0, 0, 0)';				// par défaut. Il faudra changer ça plus
 var fill_color = 'rgb(255, 255, 255)';			// idem
 var text_color = stroke_color;					// idem
 var stroke_thickness = 2;						// idem
-var font_size = document.getElementById("select_font_size").value ;
+if (document.getElementById("select_font_size").value) {
+	var font_size = document.getElementById("select_font_size").value ;
+}
+else {											// si aucune taille de police n'est donnée, on prend 18 px.
+	var font_size = 18;
+}
+
 var font_type = document.getElementById("select_font_type").value ;
 
 
@@ -705,7 +711,12 @@ function handleMouseDown(e) {
 		else {
 			max_width = canvas.width - startX;
 			text_color = stroke_color;
-			font_size = document.getElementById("select_font_size").value ;
+			if (document.getElementById("select_font_size").value) {
+				font_size = document.getElementById("select_font_size").value ;
+			}
+			else {
+				font_size = 18;
+			}
 			font_type = document.getElementById("select_font_type").value ;
 			// sauvegarde pour les zones de texte :
 			figures.push([outil, startX, startY, texte_formulaire, max_width, text_color, font_type, font_size]);
@@ -818,9 +829,8 @@ function handleMouseUp(e) {
     e.preventDefault();
     e.stopPropagation();
 
-    // the drag is over, clear the dragging flag
+    // on a relaché le bouton de la souris donc on réinitialise la variable qui le montre :
     isDown = false;
-    // console.log(x1, x2, y1, y2)
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
 		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
@@ -1126,26 +1136,40 @@ function reculer_figure() {
 }
 document.getElementById("figure_back").onclick = reculer_figure;
 
-// function changer_zone_texte() {
-// 	let new_font_size = document.getElementById("select_font_size").value;
-// 	let new_font_type = document.getElementById("select_font_type").value;
-// 	let new_text = document.getElementById("your_text").value;
-// 	if (indice_selection != -2 && forme_selectionnee[0] == 'text') {
-// 		// une forme est sélectionnée donc on lui applique les changements effectués.
-// 		// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, couleur_texte, type_police, taille_police]
-// 		forme_selectionnee[3] = new_text;
-// 		forme_selectionnee[6] = new_font_type;
-// 		forme_selectionnee[7] = new_font_size;
-// 		// on efface le canvas et on redessine les figures, pour valider les changements.
-// 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-// 		draw();
-// 	}
-// 	// on conserve ces changements pour la prochaine zone de texte.
-// 	font_size = document.getElementById("select_font_size").value;
-// 	font_type = document.getElementById("select_font_type").value;
-// }
+function changer_zone_texte() {
+	var new_font_size
+	var new_font_type
+	var new_text
+	if (document.getElementById("select_font_size").value) {
+		new_font_size = document.getElementById("select_font_size").value;
+	}
+	else {
+		new_font_size = 18;
+	}
+	new_font_type = document.getElementById("select_font_type").value;
+	if (document.getElementById("your_text").value) {
+		new_text = document.getElementById("your_text").value;
+	}
+	else {
+		new_text = forme_selectionnee[3];
+	}
+	
+	if (indice_selection != -2 && forme_selectionnee[0] == 'text') {
+		// une forme est sélectionnée donc on lui applique les changements effectués.
+		// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, couleur_texte, type_police, taille_police]
+		forme_selectionnee[3] = new_text;
+		forme_selectionnee[6] = new_font_type;
+		forme_selectionnee[7] = new_font_size;
+		// on efface le canvas et on redessine les figures, pour valider les changements.
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		draw();
+	}
+	// on conserve ces changements pour la prochaine zone de texte.
+	font_size = new_font_size
+	font_type = new_font_type
+}
 
-// document.getElementById("confirm_text").onclick = changer_couleur_contour;
+document.getElementById("confirm_text").onclick = changer_zone_texte;
 
 
 
