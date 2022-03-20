@@ -58,13 +58,16 @@
 				</div>
 			</div>
             <div class="font">
-                <p>Entrez votre texte :</p>
+                <p class="textColor">Entrez votre texte :</p>
                 <input id="your_text" type="text">
-                <select class="font_select">
-                    <option value="roboto">Roboto</option>
-                    <option value="futura">Futura</option>
-                    <option value="baskerville">Baskerville</option>
+				<p class="textColor">Type de police :</p>
+                <select class="font_select" id="select_font_type">
+                    <option value="serif">Serif</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="cursive">Cursive</option>
                 </select>
+				<p class="textColor">Taille de police :</p>
+				<input type="number" min="10" max="100" step="2" class="font_select" id="select_font_size"></input>
                 <button id="confirm_text" class="confirmBtn">Confirmer</button>
             </div>
 		</div>
