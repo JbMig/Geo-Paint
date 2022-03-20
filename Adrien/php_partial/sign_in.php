@@ -2,7 +2,7 @@
 //mise en tampon pour stockage dans une variable
 ob_start();
 //valeur pour la balisehtml <title>
-$title = "sign in";
+$title = "sign up";
 
 // si on est en method POST, on reçoit les donnée du formulaire
 // permet de créer un utilisateur
