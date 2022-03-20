@@ -489,8 +489,12 @@ var stroke_color = 'rgb(0, 0, 0)';				// par défaut. Il faudra changer ça plus
 var fill_color = 'rgb(255, 255, 255)';			// idem
 var text_color = stroke_color;					// idem
 var stroke_thickness = 2;						// idem
-var font_size = "48px";							// la taille de police ne change pas. >_<
+var font_size = "48";							// la taille de police ne change pas. >_<
 var font_type = "";								// la police ne change pas --> si on ne la met pas, voir ce qu'on peut mettre à sa place dans les données de sauvegarde
+
+// var pixel = document.getElementById("pixel")
+//     ctx.font = pixel + 'px serif';
+//     ctx.fillText(document.getElementById("text").value,event.clientX,event.clientY);
 
 // style de canvas
 ctx.strokeStyle = stroke_color;
@@ -637,10 +641,14 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 		alert('Veuillez entrer un texte dans la zone de droite et réessayer.')
 	}
 	else {
-		ctx.fillStyle = couleur_texte;
-		ctx.font = taille_police . type_police;
-		// console.log(ctx.font);
-		ctx.fillText(texte, X, Y, largeur_max);
+		// ctx.fillStyle = couleur_texte;
+		// ctx.font = taille_police . type_police;
+		// // console.log(ctx.font);
+		// ctx.fillText(texte, X, Y, largeur_max);
+
+		var pixel = font_size
+    	ctx.font = pixel + 'px serif';
+    	ctx.fillText(texte, X, Y, largeur_max);
 	}
 }
 
