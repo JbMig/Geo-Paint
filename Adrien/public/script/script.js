@@ -734,8 +734,8 @@ function handleMouseDown(e) {
 				// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 				// on compare ces coordonnées à celles de la souris pour savoir si on est dans la zone de sélection de la forme.
 				if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
-					// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.) Dans le cas des zones de texte, c'est la police qui est modifiée.
-					if (forme_selectionnee != 'None') {
+					// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
 						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
@@ -743,13 +743,15 @@ function handleMouseDown(e) {
 					indice_selection = i;
 					// il faut sortir de la boucle.
 					i = -1;
-					// on augmente l'épaisseur du contour (ou la taille de police) de la forme sélectionnée pour montrer qu'elle est sélectionnée.
+					// on augmente l'épaisseur du contour de la forme sélectionnée pour montrer qu'elle est sélectionnée.
 					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-					forme_selectionnee[7] += 2;
+					if (forme_selectionnee[0] != 'text') {
+						forme_selectionnee[7] += 2;
+					}
 				}
 				else {
-					// si une forme est sélectionnée, on remet l'épaisseur de son contour (ou la taille de police) à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
-					if (forme_selectionnee != 'None') {
+					// si une forme est sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
 						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
@@ -767,8 +769,8 @@ function handleMouseDown(e) {
 				// pour la hauteur, je considère qu'on n'écrit que sur une ligne
 				const hauteur = taille_caracteres;
 				if ((figures[i][1] < mouseX && mouseX < figures[i][1] + largeur) && (figures[i][2] > mouseY && mouseY > figures[i][2] - hauteur)) {
-					// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.) Dans le cas des zones de texte, c'est la police qui est modifiée.
-					if (forme_selectionnee != 'None') {
+					// si une forme est déjà sélectionnée (et si ce n'est pas du texte), on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
 						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
@@ -776,13 +778,15 @@ function handleMouseDown(e) {
 					indice_selection = i;
 					// il faut sortir de la boucle.
 					i = -1;
-					// on augmente l'épaisseur du contour (ou la taille de police) de la forme sélectionnée pour montrer qu'elle est sélectionnée.
+					// on augmente l'épaisseur du contour de la forme sélectionnée pour montrer qu'elle est sélectionnée (sauf si c'est du texte).
 					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
-					forme_selectionnee[7] += 2;
+					if (forme_selectionnee[0] != 'text') {
+						forme_selectionnee[7] += 2;
+					}
 				}
 				else {
-					// si une forme est sélectionnée, on remet l'épaisseur de son contour (ou la taille de police) à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
-					if (forme_selectionnee != 'None') {
+					// si une forme est sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
+					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
 						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
@@ -800,9 +804,9 @@ function handleMouseDown(e) {
 			old4 = forme_selectionnee[4];
 		}
 	}
-	// // redimmensionnement de figures
+	// // redimmensionnement de figures : cette fonction n'est pas encore disponible.
 	// else if (outil == 'size'){
-	// 	pass; // cette fonction n'est pas encore disponible
+	// 	pass;
 	// }
 	}
 }
@@ -848,9 +852,9 @@ function handleMouseUp(e) {
 		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
 	}
 
-	// // redimmensionnement de figures
+	// // redimmensionnement de figures : cette fonction n'est pas encore disponible.
 	// else if (outil == 'size'){
-	// 	pass; // cette fonction n'est pas encore disponible
+	// 	pass;
 	// }
 }
 
@@ -892,9 +896,9 @@ function handleMouseOut(e) {
 		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
 	}
 	
-	// // redimmensionnement de figures
+	// // redimmensionnement de figures : cette fonction n'est pas encore disponible.
 	// else if (outil == 'size'){
-	// 	pass; // cette fonction n'est pas encore disponible
+	// 	pass;
 	// }
 
 
@@ -964,9 +968,9 @@ function handleMouseMove(e) {
 	}
 	
 	
-	// // redimmensionnement de figures
+	// // redimmensionnement de figures : cette fonction n'est pas encore disponible.
 	// else if (outil == 'size'){
-	// 	pass; // cette fonction n'est pas encore disponible
+	// 	pass;
 	// }
 
 
