@@ -99,9 +99,9 @@ img {
   border: 1px solid #080808;
   margin : 50px 50px 50px 50px
 }
-.colorChoise{
+.colorChoice{
   width: 250px;
-  height: 500px;
+  height: 600px;
   background-color: #fff;
   border: 2px solid #000000;
   margin-bottom: 200px;
@@ -281,7 +281,7 @@ img {
 }
 #email{
   width: 200px;
-  height: 40px;
+  height: 50px;
   font-size: 1rem;
   margin-bottom: 40px;
   border: 1px solid #000;
@@ -304,6 +304,7 @@ img {
   background-color: #fff;
   position: absolute;
   width: 65px;
+  height: 20px;
   margin-left:10px;
   margin-top:30px;
 }
@@ -314,8 +315,9 @@ img {
   background-color: #fff;
   position: absolute;
   width: 50px;
+  height: 20px;
   margin-left:10px;
-  margin-top:30px;
+  margin-top:40px;
 }
 .signIn{
   position: absolute;
@@ -385,10 +387,9 @@ button {
   top: 300px;
   right: 0px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  margin-left: 400px;
 }
 #save{
   position: relative;
@@ -398,7 +399,6 @@ button {
   border-radius: 3px;
   border: 0px;
   margin-top: 20px;
-
 }
 
 /* Telechargement pdf ou png  */
@@ -490,34 +490,11 @@ button {
   flex-direction: column;
   width: 150px;
   height: 120px;
-  margin-top:90px;
+  margin-top:110px;
   margin-left: 20px;
 
 
 }
-/* #figure_front{
-
+#confirm_text{
+  margin-top: 5px;
 }
-#figure_back{
-  
-} */
-/* responsive */
-
-/* @media screen and (max-width:800px ) {
-  .loginMenu{
-    width: 50%;
-  }
-  .signIn{
-    width: 35%;
-    padding: auto;
-    height: 13%;
-    margin-left: 15%;
-  }
-  .signIn::after{
-    width: 0%;
-  }
-  .welcome{
-    width: 80%;
-    margin-left: 10%;
-  }
-} */
