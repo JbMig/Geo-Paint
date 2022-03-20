@@ -57,7 +57,7 @@
 				</div>
 			</div>
             <div class="font">
-                <p>Rentrer votre text :</p>
+                <p>Entrez votre texte :</p>
                 <input id="your_text" type="text" >
                 <select class="font_select">
                     <option value="roboto">Roboto</option>
