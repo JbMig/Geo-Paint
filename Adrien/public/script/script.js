@@ -487,7 +487,7 @@ var ctx = canvas.getContext("2d");
 // couleurs et polices par défaut
 var stroke_color = 'rgb(0, 0, 0)';				// par défaut. Il faudra changer ça plus tard en fonction des choix de l'utilisateur.
 var fill_color = 'rgb(255, 255, 255)';			// idem
-var text_color = fill_color;					// idem
+var text_color = stroke_color;					// idem
 var stroke_thickness = 2;						// idem
 var font_size = "48px";
 var font_type = "serif";
@@ -541,7 +541,7 @@ function draw() {
 				ellipse_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7]);
 			}
 			else if (figures[i][0] === 'text') {
-				// mode de sauvegarde : figures[l-1] = [outil, startX, startY, text, max_width, font_type, text_color, font_size]; 
+				// mode de sauvegarde : figures[l-1] = [outil, startX, startY, text, max_width, text_color, font_type, font_size]; 
 				zone_texte_souris(figures[i][1], figures[i][2], figures[i][3], figures[i][4], figures[i][5], figures[i][6], figures[i][7])
 			}
 	else {
@@ -632,7 +632,7 @@ function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, ep
 	ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_remplissage, epaisseur_contour);
 }
 
-function zone_texte_souris(X, Y, texte, largeur_max, type_police, couleur_texte, taille_police) {
+function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police, taille_police) {
 	if (texte == '') {
 		alert('Veuillez entrer un texte dans la zone de droite et réessayer.')
 	}
@@ -684,14 +684,19 @@ function handleMouseDown(e) {
 	else if (outil == 'text') {
 		// on récupère le texte du formulaire
 		texte_formulaire = document.getElementById("your_text").value;
-		max_width = canvas.width - startX;
-		text_color = fill_color;
-		// sauvegarde pour les zones de texte :
-		figures.push([outil, startX, startY, texte_formulaire, max_width, font_type, text_color, font_size]);
-		console.log(figures);
-		// on efface le canvas et on redessine les figures, pour valider la création de la zone.
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		draw();
+		if (texte_formulaire == '') {
+			alert('Veuillez entrer du texte dans la zone prévue à cet effet dans le menu de droite, puis réessayer.')
+		}
+		else {
+			max_width = canvas.width - startX;
+			text_color = stroke_color;
+			// sauvegarde pour les zones de texte :
+			figures.push([outil, startX, startY, texte_formulaire, max_width, text_color, font_type, font_size]);
+			console.log(figures);
+			// on efface le canvas et on redessine les figures, pour valider la création de la zone.
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			draw();
+		}
 	}
 
 
@@ -906,7 +911,7 @@ function handleMouseMove(e) {
 				console.log(forme_selectionnee[1], forme_selectionnee[2], forme_selectionnee[3],forme_selectionnee[4]) //pour le débuggage
 			}
 			else {
-				// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, type_police, couleur_texte, taille_police]
+				// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, couleur_texte, type_police, taille_police]
 				forme_selectionnee[1] = old1 + moveX;
 				forme_selectionnee[2] = old2 + moveY;
 				forme_selectionnee[4] = old4 - moveX; // si on augmente l'abscisse X, on déplace la zone vers la droite. Donc la largeur max diminue.
