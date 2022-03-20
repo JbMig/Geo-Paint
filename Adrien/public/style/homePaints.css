@@ -468,10 +468,10 @@ button {
   color: white;
 }
 .alert{
+  padding-right:30px;
   padding-left: 30px;
   padding-top: 10px;
   margin-top: 20px;
-  width: 150px;
   height: 40px;
   background-color: red;
 
