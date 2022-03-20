@@ -24,7 +24,7 @@ Vérifiez que le ports utilisé est sur 3306 pour Mysql
 Sinon vous pouvez changer le port dans le dossier database puis dans le fichier pdo.php
 
 ## Configurer MAMP:
-Dans MAMP allez dans PREFERENCES -> SERVER puis mettez le dossier public (ou racine si le nom a été changé)"Document Root" 
+Dans MAMP allez dans PREFERENCES -> SERVER puis mettez le dossier public (ou racine si le nom a été changé) en "Document Root" 
 
 ## Installation de la base de données:
 http://localhost/back_office/create_db.php pour le port 80 Apache ou Nginx
