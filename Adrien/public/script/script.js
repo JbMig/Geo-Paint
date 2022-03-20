@@ -1,3 +1,6 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// première partie : les boutons outils dans les deux menus du haut
+
 let outil = 'Aucun'
 
 function outil_rectangle() {
@@ -482,7 +485,8 @@ document.getElementById("btn_txt").onclick = outil_texte;
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// deuxième partie : le canvas et son initialisation
 
 
 
@@ -537,11 +541,12 @@ var startY;
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// troisième partie : la construction des figures
 
 let figures = [];	// variable dans laquelle toutes les informations relatives aux différentes figures seront stockées.
 
-function draw() {
+function draw() {	// cette fonction trace toutes les figures à partir des données stockées dans la liste figures.
 	for (var i = 0; i < figures.length; i++) {
 		if(figures[i][5] != '') {
 			if (figures[i][0] === 'rectangle') {
@@ -589,13 +594,14 @@ draw();
 
 function rectangle_clavier(x, y, L, H, couleur_contour, couleur_remplissage, epaisseur_contour) {
 	ctx.fillStyle = couleur_remplissage;
-	ctx.fillRect(x,y,L,H);
+	ctx.fillRect(x,y,L,H);					// remplissage du rectangle
 	ctx.strokeStyle = couleur_contour;
 	ctx.lineWidth = epaisseur_contour;
-	ctx.strokeRect(x,y,L,H);
+	ctx.strokeRect(x,y,L,H);				// contour du rectangle
 }
 
 function rectangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	// cette fonction effectue des calculs sur les données de la souris pour obtenir les données nécessaires à rectangle_clavier
 	var Xmin = Math.min(x1,x2);
 	var L = Math.max(x1,x2) - Xmin;
 	var Ymin = Math.min(y1,y2);
@@ -617,13 +623,15 @@ function triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_rempl
 }
 
 function triangle_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	// même principe que rectangle_souris
 	var x3 = (x1 + x2)/2;
 	var y3 = y2;
 	var y2 = y1;
 	triangle_clavier(x1, y1, x2, y2, x3, y3, couleur_contour, couleur_remplissage, epaisseur_contour);
-} //triangle isocèle inscrit dans le rectangle avec une base horizontale
+} // on trace un triangle isocèle inscrit dans le rectangle, avec une base horizontale.
 
 function degToRad(degrees) {
+	// cette fonction convertit les degrés (plus naturels pour nous) en radians (nécessaires pour les fonctions de tracé d'ellipses).
     return degrees * Math.PI / 180;
   	};
 
@@ -638,6 +646,7 @@ function ellipse_clavier(x0, y0, rayonX, rayonY, couleur_contour, couleur_rempli
 	}
 
 function ellipse_souris(x1, y1, x2, y2, couleur_contour, couleur_remplissage, epaisseur_contour){
+	// même principe que rectangle_souris
 	var x0 = (x1 + x2)/2;
 	var y0 = (y1 + y2)/2;
 	var rayonX = x0 - Math.min(x1,x2);
@@ -652,6 +661,9 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 	else {
 		ctx.fillStyle = couleur_texte;
 		var pixel = taille_police
+		// ctx.fillText a besoin que ctx.font soit de la forme "n pixels serif"
+		// mais nous avions besoin de stocker la taille et le type de police séparément
+		// donc il faut les rassembler avant de tracer la zone de texte.
 		if (type_police == 'serif') {
 			ctx.font = pixel + 'px serif';
 		}
@@ -670,34 +682,35 @@ function zone_texte_souris(X, Y, texte, largeur_max, couleur_texte, type_police,
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// quatrième partie : l'influence de la souris
 
 
 let forme_selectionnee = 'None'
+// puisque le dernier élément d'une liste a aussi l'indice -1, on utilise -2 pour signifier qu'aucune forme n'est sélectionnée.
 let indice_selection = -2;
-
-let old1 = 0;
-let old2 = 0;
-let old3 = 0;
-let old4 = 0;
+// en cas de déplacement, ces variables contiendront, pour les formes classiques, leurs anciennes coordonnées.
+let old1 = 0;		// même chose pour les zones de texte
+let old2 = 0;		// même chose pour les zones de texte
+let old3 = 0;		// inutilisée pour les zones de texte
+let old4 = 0;		// contient la largeur maximale pour les zones de texte
 
 function handleMouseDown(e) {
 	// initialisation du curseur de la souris
 	var canvasOffset = canvas.getBoundingClientRect();
 	var offsetX = canvasOffset.left;
 	var offsetY = canvasOffset.top;
-    // console.log('handleMouseDown');
-    // console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
-    // save the starting x/y of the rectangle
+    // coordonnées du premier coin du rectangle de construction
     startX = parseInt(e.clientX - offsetX);
     startY = parseInt(e.clientY - offsetY);
 
-    // set a flag indicating the drag has begun
+    // on indique que le curseur de la souris est enfoncé
     isDown = true;
 	
+	// on crée un nouvel élément pour sauvegarder les données de la nouvelle forme.
 	if (outil == 'rectangle' || outil == 'triangle' || outil == 'ellipse'){
 		figures.push([outil,0,0,0,0,'','',0]);
 	}
@@ -709,12 +722,12 @@ function handleMouseDown(e) {
 			alert('Veuillez entrer du texte dans la zone prévue à cet effet dans le menu de droite, puis réessayer.')
 		}
 		else {
-			max_width = canvas.width - startX;
-			text_color = stroke_color;
+			max_width = canvas.width - startX; 		// on veut éviter que le texte sorte du canvas
+			text_color = stroke_color;				// la couleur du texte utilise la couleur de contour des formes
 			if (document.getElementById("select_font_size").value) {
 				font_size = document.getElementById("select_font_size").value ;
 			}
-			else {
+			else {									// si aucune taille de police n'est donnée, on prend 18 px.
 				font_size = 18;
 			}
 			font_type = document.getElementById("select_font_type").value ;
@@ -746,7 +759,6 @@ function handleMouseDown(e) {
 				if (((figures[i][1] < mouseX && mouseX < figures[i][3]) || (figures[i][3] < mouseX && mouseX < figures[i][1])) && ((figures[i][2] < mouseY && mouseY < figures[i][4]) || (figures[i][4] < mouseY && mouseY < figures[i][2]))) {
 					// si une forme est déjà sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
 					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
-						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
 					forme_selectionnee = figures[i];
@@ -754,7 +766,6 @@ function handleMouseDown(e) {
 					// il faut sortir de la boucle.
 					i = -1;
 					// on augmente l'épaisseur du contour de la forme sélectionnée pour montrer qu'elle est sélectionnée.
-					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 					if (forme_selectionnee[0] != 'text') {
 						forme_selectionnee[7] += 2;
 					}
@@ -762,7 +773,6 @@ function handleMouseDown(e) {
 				else {
 					// si une forme est sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
 					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
-						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
 					// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
@@ -771,12 +781,13 @@ function handleMouseDown(e) {
 					i -= 1;
 				}
 			}
-			else if (figures[i][0] == 'text'){		
-				// je calcule la largeur de la zone de texte
+			else if (figures[i][0] == 'text'){
+				// la sélection d'une zone de texte est différente car on ne stocke que 2 coordonnées, au lieu de 4 pour les autres figures.
+				// on calcule la largeur de la zone de texte.
 				const nombre_caracteres = figures[i][3].length;
 				const taille_caracteres = figures[i][7];
 				const largeur = nombre_caracteres * taille_caracteres;
-				// pour la hauteur, je considère qu'on n'écrit que sur une ligne
+				// pour la hauteur, on considère qu'on n'écrit que sur une ligne.
 				const hauteur = taille_caracteres;
 				if ((figures[i][1] < mouseX && mouseX < figures[i][1] + largeur) && (figures[i][2] > mouseY && mouseY > figures[i][2] - hauteur)) {
 					// si une forme est déjà sélectionnée (et si ce n'est pas du texte), on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
@@ -789,7 +800,6 @@ function handleMouseDown(e) {
 					// il faut sortir de la boucle.
 					i = -1;
 					// on augmente l'épaisseur du contour de la forme sélectionnée pour montrer qu'elle est sélectionnée (sauf si c'est du texte).
-					// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 					if (forme_selectionnee[0] != 'text') {
 						forme_selectionnee[7] += 2;
 					}
@@ -797,7 +807,6 @@ function handleMouseDown(e) {
 				else {
 					// si une forme est sélectionnée, on remet l'épaisseur de son contour à sa valeur d'origine. (Si forme_selectionnee = 'None', ça signifie que la forme a été supprimée.)
 					if (forme_selectionnee != 'None' && forme_selectionnee[0] != 'text') {
-						// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness]; 
 						forme_selectionnee[7] -= 2;
 					}
 					// on réinitialise les données de sélection pour ne pas garder la dernière forme sélectionnée.
@@ -824,12 +833,10 @@ function handleMouseDown(e) {
 
 
 function handleMouseUp(e) {
-    // console.log('handleMouseUp');
-    // console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
-    // on a relaché le bouton de la souris donc on réinitialise la variable qui le montre :
+    // on a relaché le bouton de la souris donc on réinitialise la variable isDown :
     isDown = false;
 	var l=figures.length;
 	if (figures[l-1][0] === 'rectangle') {
@@ -869,46 +876,47 @@ function handleMouseUp(e) {
 
 
 function handleMouseOut(e) {
-    // console.log('handleMouseOut');
-    // console.log(e);
     e.preventDefault();
     e.stopPropagation();
 
-    // the drag is over, clear the dragging flag
+    // on a relaché le bouton de la souris donc on réinitialise la variable isDown :
     isDown = false; 
-	var l=figures.length;
-	if (figures[l-1][0] === 'rectangle') {
-		rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		draw();
-	}
-	else if (figures[l-1][0] === 'triangle') {
-		triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		draw();
-	}
-	else if (figures[l-1][0] === 'ellipse') {
-		ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
-		// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		draw();
-	}
 
-	// déplacement de figures
-	else if (outil == 'hand'){
-		console.log(forme_selectionnee); // pour le débuggage
-		// on efface le canvas et on redessine les figures, pour valider les changements.
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		draw();
-		// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
+	var l=figures.length;
+	if (l > 0) {
+		if (figures[l-1][0] === 'rectangle') {
+			rectangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+			// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			draw();
+		}
+		else if (figures[l-1][0] === 'triangle') {
+			triangle_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+			// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			draw();
+		}
+		else if (figures[l-1][0] === 'ellipse') {
+			ellipse_souris(figures[l-1][1], figures[l-1][2], figures[l-1][3], figures[l-1][4], figures[l-1][5], figures[l-1][6], figures[l-1][7]);
+			// on efface le canvas et on redessine les figures, pour effacer le rectangle de dessin.
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			draw();
+		}
+
+		// déplacement de figures
+		else if (outil == 'hand'){
+			console.log(forme_selectionnee); // pour le débuggage
+			// on efface le canvas et on redessine les figures, pour valider les changements.
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			draw();
+			// on garde la forme sélectionnée en mémoire pour pouvoir changer ses couleurs.
+		}
+		
+		// // redimmensionnement de figures : cette fonction n'est pas encore disponible.
+		// else if (outil == 'size'){
+		// 	pass;
+		// }
 	}
-	
-	// // redimmensionnement de figures : cette fonction n'est pas encore disponible.
-	// else if (outil == 'size'){
-	// 	pass;
-	// }
 
 
 }
@@ -918,13 +926,11 @@ function handleMouseMove(e) {
 	var canvasOffset = canvas.getBoundingClientRect();
 	var offsetX = canvasOffset.left;
 	var offsetY = canvasOffset.top;
-    // console.log('handleMouseMove');
-    // console.log(e);
     e.preventDefault();
     e.stopPropagation();
-    // met fin à la fonction si on relache le bouton de la souris sans avoir opéré de déplacement.
+    // on a relaché le bouton de la souris sans avoir opéré de déplacement donc on met fin à la fonction.
     if (!isDown) {
-        return;
+		return;
     }
 
     // on a besoin de connaitre en continu la position du curseur de la souris.
@@ -964,14 +970,12 @@ function handleMouseMove(e) {
 				forme_selectionnee[2] = old2 + moveY;
 				forme_selectionnee[3] = old3 + moveX;
 				forme_selectionnee[4] = old4 + moveY;
-				console.log(forme_selectionnee[1], forme_selectionnee[2], forme_selectionnee[3],forme_selectionnee[4]) //pour le débuggage
 			}
 			else {
 				// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, couleur_texte, type_police, taille_police]
 				forme_selectionnee[1] = old1 + moveX;
 				forme_selectionnee[2] = old2 + moveY;
-				forme_selectionnee[4] = old4 - moveX; // si on augmente l'abscisse X, on déplace la zone vers la droite. Donc la largeur max diminue.
-				console.log(forme_selectionnee[1], forme_selectionnee[2], forme_selectionnee[3],forme_selectionnee[4]) //pour le débuggage
+				forme_selectionnee[4] = old4 - moveX; // si on augmente l'abscisse X, on déplace la zone vers la droite. Donc la largeur maximale diminue.
 			}
 		}
 	}
@@ -995,6 +999,8 @@ function handleMouseMove(e) {
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// cinquième partie : les outils qui modifient des figures existantes
 
 
 function outil_gomme() {
@@ -1027,7 +1033,7 @@ function outil_gomme() {
 document.getElementById("btn_erase").onclick = outil_gomme;
 
 
-function KeyPress(e) {			// CTRL + Z pour annuler la dernière construction
+function KeyPress(e) {			// CTRL + Z sert uniquement à annuler la dernière construction
     var evtobj = window.event? event : e
     if (evtobj.keyCode == 90 && evtobj.ctrlKey){
         figures.splice(-1);
@@ -1037,11 +1043,6 @@ function KeyPress(e) {			// CTRL + Z pour annuler la dernière construction
 	}
 }
 document.onkeydown = KeyPress;
-
-
-
-
-
 
 
 
@@ -1061,6 +1062,8 @@ function changer_couleur_remplissage() {
 }
 document.getElementById("confirm_fill_color").onclick = changer_couleur_remplissage;
 
+
+
 function changer_couleur_contour() {
 	let new_color = document.getElementById("select_stroke_color").value;
 	if (indice_selection != -2) {
@@ -1077,9 +1080,13 @@ function changer_couleur_contour() {
 
 document.getElementById("confirm_stroke_color").onclick = changer_couleur_contour;
 
-function changer_epaisseur_contour() { // ça doit changer la taille de police pour les zones de texte
+
+
+function changer_epaisseur_contour() {
 	let number = document.getElementById("select_stroke_thickness").value;
-	if (indice_selection != -2) {
+	// on ne doit pas appliquer le changement suivant aux zones de texte car cela change la taille de police
+	// (et si 5px sont plutôt importants pour un contour, ils sont très insuffisants pour une taille de police).
+	if (indice_selection != -2 && forme_selectionnee[0] != 'text') {
 		// une forme est sélectionnée donc on change sa couleur.
 		// rappel : figures[i] = [outil, startX, startY, mouseX, mouseY, stroke_color, fill_color, stroke_thickness];
 		forme_selectionnee[7] = number;
@@ -1093,19 +1100,24 @@ function changer_epaisseur_contour() { // ça doit changer la taille de police p
 document.getElementById("confirm_stroke_thickness").onclick = changer_epaisseur_contour;
 
 
+
+
 function avancer_figure() {
 	var l=figures.length;
-	console.log(forme_selectionnee); // pour le débuggage
+	// on vérifie d'abord que la fonction est utilisée à bon escient.
 	if (indice_selection == -2) {
 		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
 	}
 	else if (indice_selection >= l-1) {
 		alert("La figure est déjà au premier-plan.")
 	}
+	// on peut maintenant
 	else {
+		// on peut maintenant échanger la position de la figure avec celle sui la suit dans la liste (et qui est donc devant sur le dessin).
 		troisième_variable = figures[indice_selection+1];
 		figures[indice_selection+1] = forme_selectionnee;
 		figures[indice_selection] = troisième_variable;
+		// La forme sélectionnée a changé d'indice donc on adapte la variable.
 		indice_selection += 1;
 		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1117,7 +1129,7 @@ document.getElementById("figure_front").onclick = avancer_figure;
 
 
 function reculer_figure() {
-	console.log(forme_selectionnee); // pour le débuggage	
+	// on vérifie d'abord que la fonction est utilisée à bon escient.
 	if (indice_selection == -2) {
 		alert("Vous devez d'abord sélectionner une figure avec l'outil main.");
 	}
@@ -1125,9 +1137,11 @@ function reculer_figure() {
 		alert("La figure est déjà à l'arrière-plan.")
 	}
 	else {
+		// on peut maintenant échanger la position de la figure avec celle sui la précède dans la liste (et qui est donc derrière sur le dessin).
 		troisième_variable = figures[indice_selection-1];
 		figures[indice_selection-1] = forme_selectionnee;
 		figures[indice_selection] = troisième_variable;
+		// La forme sélectionnée a changé d'indice donc on adapte la variable.
 		indice_selection -= 1;
 		// on efface le canvas et on redessine les figures, pour valider les changements.
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1136,14 +1150,18 @@ function reculer_figure() {
 }
 document.getElementById("figure_back").onclick = reculer_figure;
 
+
+
 function changer_zone_texte() {
+	// on définit les variables qui contiendront les nouveaux paramètres.
 	var new_font_size
 	var new_font_type
 	var new_text
+	// on récupère leur valeur dans le menu de droite.
 	if (document.getElementById("select_font_size").value) {
 		new_font_size = document.getElementById("select_font_size").value;
 	}
-	else {
+	else {									// si aucune taille de police n'est donnée, on prend 18 px.
 		new_font_size = 18;
 	}
 	new_font_type = document.getElementById("select_font_type").value;
@@ -1153,7 +1171,7 @@ function changer_zone_texte() {
 	else {
 		new_text = forme_selectionnee[3];
 	}
-	
+	// on n'applique les changements à la forme sélectionnée que s'il s'agit d'une zone de texte.
 	if (indice_selection != -2 && forme_selectionnee[0] == 'text') {
 		// une forme est sélectionnée donc on lui applique les changements effectués.
 		// rappel pour les zones de texte : figures[i] = [outil, X, Y, texte, largeur_max, couleur_texte, type_police, taille_police]
@@ -1174,7 +1192,8 @@ document.getElementById("confirm_text").onclick = changer_zone_texte;
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// sixième partie : les évènements du canvas pour la partie 4
 
 document.getElementById('canvas').addEventListener('mousedown', function(e) {
   	handleMouseDown(e);
@@ -1201,7 +1220,8 @@ document.getElementById('canvas').addEventListener('mouseout', function(e) {
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// septième partie : le lien avec le json, pour les différents modes de sauvegardes notamment (pdf ou png)
 
 // tout ce qui suit est la propriété intellectuelle d'Adrien 
 // mes variables
@@ -1220,7 +1240,7 @@ function switch_hidden() { //fait apparaitre le formulaire
 }
 function save_it() { //récupère le json dans le input
     var data = [...figures];
-    let array_json = JSON.stringify(data); //transform data en json
+    let array_json = JSON.stringify(data); //transforme data en json
     get_json.value = array_json;
 }
 
